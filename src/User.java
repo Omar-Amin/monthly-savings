@@ -1,32 +1,34 @@
+import javax.persistence.*;
 import java.util.ArrayList;
 
+@Entity
+@Table(name = "Users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int income = 0;
-    private String firstName, lastName;
-    private ArrayList<Payment> payments;
+    private String firstName, lastName, password, email;
 
     /**
      * Constructor when creating a user.
      * */
-    User(int id, String firstName, String lastName){
-        this.id = id;
+    User(String firstName, String lastName, String email, String password){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.password = password;
     }
 
     User(){}
+
 
     public int getId() {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIncome() {
@@ -37,11 +39,35 @@ public class User {
         this.income = income;
     }
 
-    public ArrayList<Payment> getPayments() {
-        return payments;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPayments(ArrayList<Payment> payments) {
-        this.payments = payments;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
