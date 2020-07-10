@@ -11,6 +11,7 @@ public class User {
     private int income = 0;
     private String firstName, lastName, password, email;
     private final permissions permission = permissions.user;
+    private int monthlyPayment;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Payment> payments = new ArrayList<>();
@@ -88,4 +89,11 @@ public class User {
         return payments;
     }
 
+    public int getMonthlyPayment() {
+        return monthlyPayment;
+    }
+
+    public void setMonthlyPayment(int monthlyPayment) {
+        this.monthlyPayment = monthlyPayment;
+    }
 }

@@ -2,8 +2,11 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.AccessType;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
+
+import java.util.Scanner;
 
 public class Main {
 
@@ -14,22 +17,61 @@ public class Main {
 
     private Configuration cfg;
     private Server server;
+    private Scanner sc;
+
+
 
     private void run(){
-
+        setup();
+        sc = new Scanner(System.in);
         logIn();
-        SessionFactory sessionFactory = cfg.buildSessionFactory();
-        Session session = sessionFactory.openSession();
-
-
-        sessionFactory.close();
-        session.close();
     }
 
     private void logIn(){
-
+        System.out.println("Press 1 to log in. \n Press 2 to create an account. \n Press 3 to leave the application.");
+        Authentication auth = new Authentication(server);
+        switch (sc.nextLine()){
+            case "1":
+                if(auth.logIn()){
+                    System.out.println("Logged in.");
+                    menu();
+                } else {
+                    System.out.println("Incorrect email or password, please try again.");
+                    logIn();
+                }
+                break;
+            case "2":
+                if(auth.createUser()){
+                    System.out.println("Account created.");
+                    System.out.println("Logged in.");
+                    menu();
+                }else {
+                    System.out.println("Email already taken.");
+                }
+                break;
+            default:
+                System.out.println("Illegal argument, try again");
+                logIn();
+        }
     }
 
+    private void menu(){
+        System.out.println("Press 1 to change income. \n Press 2 to add a new payment. \n Press 3 to log out.");
+        switch (sc.nextLine()){
+            case "1":
+
+                break;
+            case "2":
+                break;
+            case "3":
+                System.out.println("Logged out.");
+                logIn();
+                break;
+            default:
+                System.out.println("Illegal argument, try again");
+                menu();
+        }
+    }
 
     private void setup(){
         /*
@@ -39,11 +81,14 @@ public class Main {
         String databaseName = "databasse";
         */
 
+
         server = new Server(connectionUrl,user,password,databaseName);
         server.setupServer();
 
         cfg = server.createHibernateConfiguration();
+        server.buildFactory();
     }
+
 
     /*
         //TODO: Users that can create account, log in etc.
