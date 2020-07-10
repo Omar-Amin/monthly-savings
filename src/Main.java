@@ -8,6 +8,30 @@ import org.hibernate.criterion.Restrictions;
 public class Main {
 
     public static void main(String[] args) {
+        Main main = new Main();
+        main.run();
+    }
+
+    private Configuration cfg;
+    private Server server;
+
+    private void run(){
+
+        logIn();
+        SessionFactory sessionFactory = cfg.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+
+
+        sessionFactory.close();
+        session.close();
+    }
+
+    private void logIn(){
+
+    }
+
+
+    private void setup(){
         /*
         String connectionUrl = "jdbc:sqlserver://localhost:host";
         String user = "sa";
@@ -15,17 +39,10 @@ public class Main {
         String databaseName = "databasse";
         */
 
-
-        Server server = new Server(connectionUrl,user,password,databaseName);
+        server = new Server(connectionUrl,user,password,databaseName);
         server.setupServer();
 
-        Configuration cfg = server.createHibernateConfiguration();
-
-        SessionFactory sessionFactory = cfg.buildSessionFactory();
-        Session session = sessionFactory.openSession();
-
-        sessionFactory.close();
-        session.close();
+        cfg = server.createHibernateConfiguration();
     }
 
     /*

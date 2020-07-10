@@ -40,6 +40,7 @@ public class Server {
         cfg.setProperty("hibernate.hbm2ddl.auto", "update");
 
         cfg.addAnnotatedClass(User.class);
+        cfg.addAnnotatedClass(Payment.class);
 
         return cfg;
     }

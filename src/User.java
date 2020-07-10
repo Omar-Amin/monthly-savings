@@ -1,5 +1,6 @@
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Users")
@@ -9,6 +10,10 @@ public class User {
     private int id;
     private int income = 0;
     private String firstName, lastName, password, email;
+    private final permissions permission = permissions.user;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Payment> payments = new ArrayList<>();
 
     /**
      * Constructor when creating a user.
@@ -70,4 +75,17 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public permissions getPermission() {
+        return permission;
+    }
+
+    public void addPayment(Payment payment){
+        this.payments.add(payment);
+    }
+
+    public List<Payment> getPayments(){
+        return payments;
+    }
+
 }
