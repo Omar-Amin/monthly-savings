@@ -1,3 +1,5 @@
+package tables;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,20 +16,19 @@ public class User {
     private int monthlyPayment;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Payment> payments = new ArrayList<>();
+    private final List<Payment> payments = new ArrayList<>();
 
     /**
      * Constructor when creating a user.
      * */
-    User(String firstName, String lastName, String email, String password){
+    public User(String firstName, String lastName, String email, String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
     }
 
-    User(){}
-
+    public User(){}
 
     public int getId() {
         return id;

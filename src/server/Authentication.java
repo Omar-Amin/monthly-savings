@@ -1,3 +1,6 @@
+package server;
+
+import tables.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -9,7 +12,7 @@ public class Authentication {
     private final Scanner sc = new Scanner(System.in);
     private final Session session;
 
-    Authentication(Server server){
+    public Authentication(Server server){
         this.session = server.getSession();
     }
 
@@ -17,7 +20,7 @@ public class Authentication {
      * Logs in if the email and password is correct.
      * Identical emails cannot exist. (because of how the user is created)
      * */
-    User logIn(){
+    public User logIn(){
         System.out.println("email:");
         String email = sc.next();
         System.out.println("password:");
@@ -30,7 +33,7 @@ public class Authentication {
     /**
      * Creates a user, checks if the user already exist.
      * */
-    User createUser(){
+    public User createUser(){
         String firstName, lastName, email, password;
         System.out.println("First name:");
         firstName = sc.next();

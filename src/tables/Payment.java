@@ -1,3 +1,5 @@
+package tables;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,14 +15,13 @@ public class Payment {
     @ManyToOne
     private User user;
 
-    Payment(String name, int price, paymentType type){
+    public Payment(String name, int price, paymentType type){
         this.name = name;
         this.price = price;
         this.type = type;
     }
 
-    Payment(){}
-
+    public Payment(){}
 
     public paymentType getType() {
         return type;

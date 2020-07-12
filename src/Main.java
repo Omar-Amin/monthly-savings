@@ -1,3 +1,8 @@
+import tables.Payment;
+import tables.User;
+import server.Authentication;
+import server.Server;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -123,24 +128,24 @@ public class Main {
         //TODO: The fun part, calculating the monthly payment, basically getting stats of a user, based on his income and payments.
 
         // Retrieves all users.
-        List users = session.createQuery("FROM User").list();
+        List users = session.createQuery("FROM Tables.User").list();
         for (Object u :users) {
-            User use = (User) u;
+            Tables.User use = (Tables.User) u;
             System.out.println(use.getId());
         }
-        User users = session.get(User.class,2);
+        Tables.User users = session.get(Tables.User.class,2);
 
         // Makes a transaction, meaning creating an object and
         // sending it to the server.
         Transaction transaction = session.beginTransaction();
-        User u1 = new User("Johnny", "Doughy","john@doe.com","1234");
+        Tables.User u1 = new Tables.User("Johnny", "Doughy","john@doe.com","1234");
         u1.setIncome(21000);
         session.save(u1);
         transaction.commit();
 
         // Get information based on unique attribute (it returns null if the given attribute doesn't exist)
-        Criteria criteria = session.createCriteria(User.class);
-        User yourObject = (User) criteria.add(Restrictions.eq("email", "john@doe.com"))
+        Criteria criteria = session.createCriteria(Tables.User.class);
+        Tables.User yourObject = (Tables.User) criteria.add(Restrictions.eq("email", "john@doe.com"))
                 .uniqueResult();
     */
 

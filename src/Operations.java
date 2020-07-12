@@ -1,14 +1,18 @@
+import tables.Payment;
+import tables.User;
+import tables.paymentType;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import server.Server;
 
 import java.util.Scanner;
 
 public class Operations {
-    private Session session;
-    private Scanner sc;
-    private User user;
-    private int id;
+    private final Session session;
+    private final Scanner sc;
+    private final User user;
+    private final int id;
 
     Operations(Server server, User user, Scanner sc){
         this.session = server.getSession();
