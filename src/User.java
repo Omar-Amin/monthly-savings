@@ -13,7 +13,7 @@ public class User {
     private final permissions permission = permissions.user;
     private int monthlyPayment;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Payment> payments = new ArrayList<>();
 
     /**

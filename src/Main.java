@@ -17,6 +17,7 @@ public class Main {
 
     private void run(){
         setup();
+
         sc = new Scanner(System.in);
         logIn();
     }
@@ -55,9 +56,8 @@ public class Main {
     }
 
     private void menu(){
-        System.out.println("Press 1 to change income. \n Press 2 to add a new payment. \n Press 3 to log out.");
-        Operations op = new Operations(server,user);
-        System.out.println(user.getIncome());
+        System.out.println("Press 1 to change income. \n Press 2 to add a new payment. \n Press 3 to view all payments. \n Press 4 to log out.");
+        Operations op = new Operations(server,user,sc);
         switch (sc.nextLine()){
             case "1":
                 try{
@@ -71,8 +71,18 @@ public class Main {
                 }
                 break;
             case "2":
+                op.addNewPayment();
+                menu();
                 break;
             case "3":
+                System.out.println("Payments:");
+                for (Payment p :user.getPayments()) {
+                    System.out.println("Name: " + p.getName() + " Price: " + p.getPrice() + " Type: " + p.getType());
+                }
+                System.out.println();
+                menu();
+                break;
+            case "4":
                 System.out.println("Logged out.");
                 user = null;
                 logIn();
