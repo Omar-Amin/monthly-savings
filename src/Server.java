@@ -14,6 +14,7 @@ public class Server {
     private SessionFactory sessionFactory = null;
     private Session session;
     private Configuration cfg;
+    private Connection connection;
 
     Server(String connectionUrl, String user, String password, String databaseName){
         this.connectionUrl = connectionUrl;
@@ -26,7 +27,8 @@ public class Server {
         String url = this.connectionUrl + ";databaseName=" + this.databaseName + ";" + "user=" + this.user + ";password=" + this.password;
 
         System.out.print("Connecting to SQL Server ... ");
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try{
+            connection = DriverManager.getConnection(url);
             System.out.println("Connected successfully.");
         } catch (SQLException ignored){}
     }
@@ -64,5 +66,9 @@ public class Server {
             session = sessionFactory.openSession();
         }
         return this.session;
+    }
+
+    public void close() throws SQLException {
+        connection.close();
     }
 }

@@ -13,17 +13,17 @@ public class Authentication {
         this.session = server.getSession();
     }
 
-    boolean logIn(){
+    User logIn(){
         System.out.println("email:");
         String email = sc.next();
         System.out.println("password:");
         String password = sc.next();
         User user = returnUser(email);
         session.close();
-        return user != null && user.getPassword().equals(password);
+        return user != null && user.getPassword().equals(password) ? user : null;
     }
 
-    boolean createUser(){
+    User createUser(){
         String firstName, lastName, email, password;
         System.out.println("First name:");
         firstName = sc.next();
@@ -36,7 +36,7 @@ public class Authentication {
 
         if(returnUser(email) != null){
             System.out.println("Account already exist");
-            return false;
+            return null;
         }
 
         System.out.println("Password:");
@@ -47,7 +47,7 @@ public class Authentication {
         session.save(user);
         transaction.commit();
         session.close();
-        return true;
+        return user;
     }
 
     User returnUser(String email){

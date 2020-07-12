@@ -1,11 +1,7 @@
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.AccessType;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Restrictions;
 
+import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -15,11 +11,9 @@ public class Main {
         main.run();
     }
 
-    private Configuration cfg;
     private Server server;
     private Scanner sc;
-
-
+    private User user;
 
     private void run(){
         setup();
@@ -32,7 +26,7 @@ public class Main {
         Authentication auth = new Authentication(server);
         switch (sc.nextLine()){
             case "1":
-                if(auth.logIn()){
+                if((user = auth.logIn()) != null){
                     System.out.println("Logged in.");
                     menu();
                 } else {
@@ -41,13 +35,18 @@ public class Main {
                 }
                 break;
             case "2":
-                if(auth.createUser()){
+                if((user = auth.createUser()) != null){
                     System.out.println("Account created.");
                     System.out.println("Logged in.");
                     menu();
                 }else {
                     System.out.println("Email already taken.");
                 }
+                break;
+            case "3":
+                try {
+                    server.close();
+                } catch (SQLException ignored) {}
                 break;
             default:
                 System.out.println("Illegal argument, try again");
@@ -57,14 +56,25 @@ public class Main {
 
     private void menu(){
         System.out.println("Press 1 to change income. \n Press 2 to add a new payment. \n Press 3 to log out.");
+        Operations op = new Operations(server,user);
+        System.out.println(user.getIncome());
         switch (sc.nextLine()){
             case "1":
-
+                try{
+                    int income = Integer.parseInt(sc.nextLine());
+                    System.out.println("Type in your monthly income:");
+                    op.updateIncome(income);
+                }catch (NumberFormatException e){
+                    System.out.println("The income should only consist of integers, try again.");
+                } finally {
+                    menu();
+                }
                 break;
             case "2":
                 break;
             case "3":
                 System.out.println("Logged out.");
+                user = null;
                 logIn();
                 break;
             default:
@@ -82,13 +92,12 @@ public class Main {
         */
 
 
+
         server = new Server(connectionUrl,user,password,databaseName);
         server.setupServer();
-
-        cfg = server.createHibernateConfiguration();
+        server.createHibernateConfiguration();
         server.buildFactory();
     }
-
 
     /*
         //TODO: Users that can create account, log in etc.
