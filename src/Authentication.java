@@ -13,6 +13,10 @@ public class Authentication {
         this.session = server.getSession();
     }
 
+    /**
+     * Logs in if the email and password is correct.
+     * Identical emails cannot exist. (because of how the user is created)
+     * */
     User logIn(){
         System.out.println("email:");
         String email = sc.next();
@@ -23,6 +27,9 @@ public class Authentication {
         return user != null && user.getPassword().equals(password) ? user : null;
     }
 
+    /**
+     * Creates a user, checks if the user already exist.
+     * */
     User createUser(){
         String firstName, lastName, email, password;
         System.out.println("First name:");
@@ -50,7 +57,8 @@ public class Authentication {
         return user;
     }
 
-    User returnUser(String email){
+
+    private User returnUser(String email){
         Criteria criteria = session.createCriteria(User.class);
         return (User) criteria.add(Restrictions.eq("email", email))
                 .uniqueResult();

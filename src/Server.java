@@ -23,6 +23,9 @@ public class Server {
         this.databaseName = databaseName;
     }
 
+    /**
+     * Connecting to the SQL server.
+     * */
     void setupServer(){
         String url = this.connectionUrl + ";databaseName=" + this.databaseName + ";" + "user=" + this.user + ";password=" + this.password;
 
@@ -33,7 +36,10 @@ public class Server {
         } catch (SQLException ignored){}
     }
 
-    Configuration createHibernateConfiguration() {
+    /**
+     * Creates hibernate configuration, adding both classes Payment and User.
+     * */
+    void createHibernateConfiguration() {
         String url = this.connectionUrl + ";databaseName=" + this.databaseName;
         Configuration cfg = new Configuration()
                 .setProperty("hibernate.connection.driver_class", "com.microsoft.sqlserver.jdbc.SQLServerDriver")
@@ -44,13 +50,11 @@ public class Server {
                 .setProperty("hibernate.show_sql", "true");
         cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
         cfg.setProperty("hibernate.hbm2ddl.auto", "update");
-        cfg.setProperty("persistence-unit", "testnavn");
 
         cfg.addAnnotatedClass(User.class);
         cfg.addAnnotatedClass(Payment.class);
 
         this.cfg = cfg;
-        return cfg;
     }
 
     public void buildFactory(){

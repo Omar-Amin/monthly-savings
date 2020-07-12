@@ -1,7 +1,4 @@
-import org.hibernate.cfg.Configuration;
-
 import java.sql.SQLException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -17,13 +14,12 @@ public class Main {
 
     private void run(){
         setup();
-
         sc = new Scanner(System.in);
         logIn();
     }
 
     private void logIn(){
-        System.out.println("Press 1 to log in. \n Press 2 to create an account. \n Press 3 to leave the application.");
+        System.out.println("Press 1 to log in. \nPress 2 to create an account. \nPress 3 to leave the application.");
         Authentication auth = new Authentication(server);
         switch (sc.nextLine()){
             case "1":
@@ -56,7 +52,8 @@ public class Main {
     }
 
     private void menu(){
-        System.out.println("Press 1 to change income. \n Press 2 to add a new payment. \n Press 3 to view all payments. \n Press 4 to log out.");
+        System.out.println("Press 1 to change income. \nPress 2 to add a new payment. \nPress 3 to view all payments." +
+                "\nPress 4 to get more information on your income and monthly payments." + " \nPress 5 to log out.");
         Operations op = new Operations(server,user,sc);
         switch (sc.nextLine()){
             case "1":
@@ -83,6 +80,15 @@ public class Main {
                 menu();
                 break;
             case "4":
+                op.calculateMonthly();
+                menu();
+                break;
+            case "5":
+                // TODO: Some sort of savings feature (i want to save up for a car, how much should i wait, etc.)
+                System.out.println(user.getMonthlyPayment());
+                menu();
+                break;
+            case "6":
                 System.out.println("Logged out.");
                 user = null;
                 logIn();
@@ -91,6 +97,10 @@ public class Main {
                 System.out.println("Illegal argument, try again");
                 menu();
         }
+    }
+
+    private void admin(){
+        //TODO: Admin can check overall stats, how much the average user earns, how many payments etc.
     }
 
     private void setup(){
@@ -110,7 +120,7 @@ public class Main {
     }
 
     /*
-        //TODO: Users that can create account, log in etc.
+        //TODO: The fun part, calculating the monthly payment, basically getting stats of a user, based on his income and payments.
 
         // Retrieves all users.
         List users = session.createQuery("FROM User").list();

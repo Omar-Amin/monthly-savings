@@ -36,6 +36,9 @@ public class Operations {
         }
     }
 
+    /**
+     * Adds a new payment to the database and user object.
+     * */
     void addNewPayment(){
         Payment payment = null;
         try {
@@ -60,13 +63,39 @@ public class Operations {
                 session.save(payment);
                 session.update(u1);
                 tr.commit();
-            } catch (IllegalArgumentException e) {
+            } catch (HibernateException e) {
                 System.out.println("Illegal argument.");
             }finally {
                 session.close();
             }
         }
+    }
 
+    /**
+     * Calculates how much the user spends on the payments,
+     * and how much money left he has at the end of the month based on the income.
+     * */
+    void calculateMonthly(){
+        int payments = calculatePayments();
+        user.setMonthlyPayment(payments);
+        System.out.println("Monthly payments: " + payments);
+        System.out.println("Money left after payments: " + (user.getIncome()-payments) + "\n");
+    }
+
+    private int calculatePayments(){
+        int payments = 0;
+        for (Payment p : user.getPayments()) {
+            if(p.getType() == paymentType.daily){
+                payments += 4 * 7 * p.getPrice();
+            }else if(p.getType() == paymentType.quarterly){
+                payments += p.getPrice() / 4;
+            }else if (p.getType() == paymentType.yearly){
+                payments += p.getPrice() / (52/4);
+            } else {
+                payments += p.getPrice();
+            }
+        }
+        return payments;
     }
 
 }
