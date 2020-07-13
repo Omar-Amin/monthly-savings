@@ -1,4 +1,9 @@
-package Tables;
+package tables;
 
-public enum paymentType {
+public enum paymentType{
+    once,
+    daily,
+    monthly,
+    quarterly,
+    yearly
 }

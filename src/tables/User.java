@@ -97,4 +97,8 @@ public class User {
     public void setMonthlyPayment(int monthlyPayment) {
         this.monthlyPayment = monthlyPayment;
     }
+
+    public void deletePayment(int index){
+        this.payments.remove(index);
+    }
 }

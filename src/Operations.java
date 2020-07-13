@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import server.Server;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Operations {
@@ -101,5 +103,62 @@ public class Operations {
         }
         return payments;
     }
+
+    /**
+     * Calculates how many months it would take to save up
+     * x amount of money.
+     * */
+    void calculateSavings(){
+        System.out.println("Amount of money you want to save: ");
+        try{
+            int cost = Integer.parseInt(sc.nextLine());
+            int moneyLeft = user.getIncome()-calculatePayments();
+            if(moneyLeft <= 0){
+                System.out.println("You don't earn enough money or you have too many payments to save up.");
+            }else{
+                System.out.println("It will take you approximately " + (int) Math.ceil((double) cost/moneyLeft) + " month(s). \n");
+            }
+        }catch (NumberFormatException ignore){
+            System.out.println("Not an integer.");
+        }
+    }
+
+    /**
+     * Deletes a payment from the user and server.
+     * */
+    void deletePayment(){
+        System.out.println("Choose a payment by its id to get deleted: ");
+        List<Payment> payments = user.getPayments();
+        int amountOfPayments = payments.size();
+        for (int i = 0; i < amountOfPayments; i++) {
+            Payment p = payments.get(i);
+            System.out.println("ID: " + i + " Name: " + p.getName() + " Price: " + p.getPrice() + " Type: " + p.getType());
+        }
+        int index = 0;
+        try{
+            index = Integer.parseInt(sc.nextLine());
+            if(index >= amountOfPayments || index < 0){
+                System.out.println("This payment ID does not exist.");
+                return;
+            }
+        }catch (NumberFormatException ignore){
+            System.out.println("Not an integer.");
+        }
+
+        try{
+            Transaction tr = session.beginTransaction();
+            User u1 = session.get(User.class,id);
+            session.delete(u1.getPayments().get(index));
+            u1.deletePayment(index);
+            user.deletePayment(index);
+            session.update(u1);
+            tr.commit();
+        } catch (HibernateException e) {
+            System.out.println("Server error.");
+        }finally {
+            session.close();
+        }
+    }
+
 
 }

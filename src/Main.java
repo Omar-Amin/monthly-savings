@@ -57,8 +57,9 @@ public class Main {
     }
 
     private void menu(){
-        System.out.println("Press 1 to change income. \nPress 2 to add a new payment. \nPress 3 to view all payments." +
-                "\nPress 4 to get more information on your income and monthly payments." + " \nPress 5 to log out.");
+        System.out.println("Press 1 to change income. \nPress 2 to add a new payment. \nPress 3 to view all payments.\n" +
+                "Press 4 to get more information on your income and monthly payments.\n" + "Press 5 to calculate how long it takes to save up x amount of money.\n" +
+                "Press 6 to delete a payment.\n"+ "Press 7 to log out.");
         Operations op = new Operations(server,user,sc);
         switch (sc.nextLine()){
             case "1":
@@ -89,11 +90,14 @@ public class Main {
                 menu();
                 break;
             case "5":
-                // TODO: Some sort of savings feature (i want to save up for a car, how much should i wait, etc.)
-                System.out.println(user.getMonthlyPayment());
+                op.calculateSavings();
                 menu();
                 break;
             case "6":
+                op.deletePayment();
+                menu();
+                break;
+            case "7":
                 System.out.println("Logged out.");
                 user = null;
                 logIn();
