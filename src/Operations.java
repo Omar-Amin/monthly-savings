@@ -1,3 +1,4 @@
+import org.hibernate.query.Query;
 import tables.Payment;
 import tables.User;
 import tables.paymentType;
@@ -6,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import server.Server;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -160,5 +160,51 @@ public class Operations {
         }
     }
 
+    /**
+     * Calculates stats based on all users and their payments etc.
+     * */
+    void showStats(){
+        List users = session.createQuery("FROM User").list();
+        List payments = session.createQuery("FROM Payment").list();
+
+        float monthlyPayments = 0;
+        float averageIncome = 0;
+
+        for (Object o :users) {
+            User u = (User) o;
+            averageIncome += u.getIncome();
+        }
+        averageIncome = averageIncome/users.size();
+        System.out.println("Average income: " + averageIncome);
+
+        for (Object o :payments) {
+            Payment p = (Payment) o;
+            monthlyPayments += paymentCal(p);
+        }
+        // dividing by users, since its average payments payed pr user
+        System.out.println("Average monthly payments payed pr person: " + (monthlyPayments/users.size()));
+        System.out.println("You pay: " + calculatePayments());
+
+        if(user.getIncome() < averageIncome){
+            System.out.println("You earn " + (averageIncome/user.getIncome()*100 - 100) + "% less than average.");
+        }else {
+            System.out.println("You earn " + (user.getIncome()/averageIncome*100 - 100) + "% more than average.");
+        }
+        System.out.println();
+    }
+
+    private int paymentCal(Payment p){
+        int payments;
+        if(p.getType() == paymentType.daily){
+            payments = 4 * 7 * p.getPrice();
+        }else if(p.getType() == paymentType.quarterly){
+            payments = p.getPrice() / 4;
+        }else if (p.getType() == paymentType.yearly){
+            payments = p.getPrice() / (52/4);
+        } else {
+            payments = p.getPrice();
+        }
+        return payments;
+    }
 
 }

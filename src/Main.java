@@ -59,7 +59,7 @@ public class Main {
     private void menu(){
         System.out.println("Press 1 to change income. \nPress 2 to add a new payment. \nPress 3 to view all payments.\n" +
                 "Press 4 to get more information on your income and monthly payments.\n" + "Press 5 to calculate how long it takes to save up x amount of money.\n" +
-                "Press 6 to delete a payment.\n"+ "Press 7 to log out.");
+                "Press 6 to delete a payment.\n"+ "Press 7 to get stats.\n" + "Press 8 to log out.");
         Operations op = new Operations(server,user,sc);
         switch (sc.nextLine()){
             case "1":
@@ -98,6 +98,11 @@ public class Main {
                 menu();
                 break;
             case "7":
+                System.out.println("Calculating stats...");
+                op.showStats();
+                menu();
+                break;
+            case "8":
                 System.out.println("Logged out.");
                 user = null;
                 logIn();
@@ -106,10 +111,6 @@ public class Main {
                 System.out.println("Illegal argument, try again");
                 menu();
         }
-    }
-
-    private void admin(){
-        //TODO: Admin can check overall stats, how much the average user earns, how many payments etc.
     }
 
     private void setup(){
@@ -127,32 +128,5 @@ public class Main {
         server.createHibernateConfiguration();
         server.buildFactory();
     }
-
-    /*
-        //TODO: The fun part, calculating the monthly payment, basically getting stats of a user, based on his income and payments.
-
-        // Retrieves all users.
-        List users = session.createQuery("FROM Tables.User").list();
-        for (Object u :users) {
-            Tables.User use = (Tables.User) u;
-            System.out.println(use.getId());
-        }
-        Tables.User users = session.get(Tables.User.class,2);
-
-        // Makes a transaction, meaning creating an object and
-        // sending it to the server.
-        Transaction transaction = session.beginTransaction();
-        Tables.User u1 = new Tables.User("Johnny", "Doughy","john@doe.com","1234");
-        u1.setIncome(21000);
-        session.save(u1);
-        transaction.commit();
-
-        // Get information based on unique attribute (it returns null if the given attribute doesn't exist)
-        Criteria criteria = session.createCriteria(Tables.User.class);
-        Tables.User yourObject = (Tables.User) criteria.add(Restrictions.eq("email", "john@doe.com"))
-                .uniqueResult();
-    */
-
-
 
 }

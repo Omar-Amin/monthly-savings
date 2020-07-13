@@ -65,10 +65,6 @@ public class Server {
         this.sessionFactory = this.cfg.buildSessionFactory();
     }
 
-    public SessionFactory getSessionFactory() {
-        return this.sessionFactory;
-    }
-
     public Session getSession(){
         if (null == session || !session.isOpen()) {
             session = sessionFactory.openSession();
