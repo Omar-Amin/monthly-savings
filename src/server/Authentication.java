@@ -27,14 +27,14 @@ public class Authentication {
         String password = sc.next();
         User user = returnUser(email);
         session.close();
-        return user != null && user.getPassword().equals(password) ? user : null;
+        return user != null && user.getPassword().equals(Security.authenticatePassword(password,user.getSalt())) ? user : null;
     }
 
     /**
      * Creates a user, checks if the user already exist.
      * */
     public User createUser(){
-        String firstName, lastName, email, password;
+        String firstName, lastName, email;
         System.out.println("First name:");
         firstName = sc.next();
 
@@ -50,9 +50,8 @@ public class Authentication {
         }
 
         System.out.println("Password:");
-        password = sc.next();
-
-        User user = new User(firstName,lastName,email,password);
+        Password password = Security.protectPassword(sc.next());
+        User user = new User(firstName,lastName,email,password.getHash(),password.getSalt());
         Transaction transaction = session.beginTransaction();
         session.save(user);
         transaction.commit();

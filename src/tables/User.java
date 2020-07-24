@@ -14,6 +14,7 @@ public class User {
     private String firstName, lastName, password, email;
     private final permissions permission = permissions.user;
     private int monthlyPayment;
+    private String salt;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private final List<Payment> payments = new ArrayList<>();
@@ -21,11 +22,12 @@ public class User {
     /**
      * Constructor when creating a user.
      * */
-    public User(String firstName, String lastName, String email, String password){
+    public User(String firstName, String lastName, String email, String password, String salt){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.salt = salt;
     }
 
     public User(){}
@@ -101,4 +103,9 @@ public class User {
     public void deletePayment(int index){
         this.payments.remove(index);
     }
+
+    public String getSalt() {
+        return salt;
+    }
+
 }
