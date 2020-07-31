@@ -1,9 +1,10 @@
-#logIn:hover{
-    -fx-background-color: #30CA80;
-}
-
 #logIn{
     -fx-background-color: #31AD72;
+}
+
+#logIn:hover{
+    -fx-background-color: #30CA80;
+    -fx-cursor: hand;
 }
 
 #createAccount{
@@ -12,6 +13,7 @@
 
 #createAccount:hover{
     -fx-text-fill: #fff;
+    -fx-cursor: hand;
 }
 
 #emailInsert{
