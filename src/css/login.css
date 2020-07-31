@@ -1,0 +1,46 @@
+#logIn:hover{
+    -fx-background-color: #30CA80;
+}
+
+#logIn{
+    -fx-background-color: #31AD72;
+}
+
+#createAccount{
+    -fx-background-color: none;
+}
+
+#createAccount:hover{
+    -fx-text-fill: #fff;
+}
+
+#emailInsert{
+    -fx-background-color: none;
+    -fx-border-color: #30CA80;
+    -fx-prompt-text-fill: #CBC7C7;
+    -fx-text-fill: #fff;
+}
+
+#passwordInsert{
+    -fx-background-color: none;
+    -fx-border-color: #30CA80;
+    -fx-prompt-text-fill: #CBC7C7;
+    -fx-text-fill: #fff;
+}
+
+#emailInsert:hover{
+    -fx-background-color: none;
+    -fx-border-color: #25ee8f;
+    -fx-prompt-text-fill: #e9e7e7;
+}
+
+#passwordInsert:hover{
+    -fx-background-color: none;
+    -fx-border-color: #25ee8f;
+    -fx-prompt-text-fill: #E9E7E7;
+}
+
+#title{
+    -fx-background-color: none;
+    -fx-text-fill: #fff;
+}
