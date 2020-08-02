@@ -41,6 +41,11 @@ public class MainUI extends Application {
         });
 
         createAccount.setOnAction((e) -> {
+            try {
+                scene.setRoot(FXMLLoader.load(getClass().getResource("fxml/createAccount.fxml")));
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         });
     }
 
