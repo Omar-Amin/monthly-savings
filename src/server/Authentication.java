@@ -30,29 +30,23 @@ public class Authentication {
     /**
      * Creates a user, checks if the user already exist.
      * */
-    public User createUser(){
-        String firstName, lastName, email;
-        System.out.println("First name:");
-        firstName = sc.next();
-
-        System.out.println("Last name");
-        lastName = sc.next();
-
-        System.out.println("Email:");
-        email = sc.next();
-
-        if(returnUser(email) != null){
-            System.out.println("Account already exist");
+    public User createUser(String email, String name, String passwordInsert){
+        String firstName, lastName;
+        String[] splitName = name.split(" ");
+        if(splitName.length < 2){
             return null;
         }
-
+        firstName = splitName[0];
+        lastName = splitName[1];
+        if(returnUser(email) != null){
+            return null;
+        }
         System.out.println("Password:");
-        Password password = Security.protectPassword(sc.next());
+        Password password = Security.protectPassword(passwordInsert);
         User user = new User(firstName,lastName,email,password.getHash(),password.getSalt());
         Transaction transaction = session.beginTransaction();
         session.save(user);
         transaction.commit();
-        session.close();
         return user;
     }
 

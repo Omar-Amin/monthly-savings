@@ -22,7 +22,7 @@ public class MainUI extends Application {
     private Scene main;
     private Scene createScene;
     // Server and user
-    private Server server;
+    protected static Server server;
     private User user;
     Authentication auth;
 

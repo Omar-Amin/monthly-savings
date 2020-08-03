@@ -3,6 +3,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import server.Authentication;
+import tables.User;
 
 public class CreateAccount {
 
@@ -22,11 +24,19 @@ public class CreateAccount {
 
     private void setupActionHandlers(){
         signUp.setOnAction((e) -> {
+            Authentication auth = new Authentication(MainUI.server);
             String mail, name, password, confirm;
             mail = emailInsert.getText();
             name = fullName.getText();
             password = passwordInsert.getText();
             confirm = passwordConfirm.getText();
+            User newUser = auth.createUser(mail,name,password);
+            if(newUser != null && password.equals(confirm)){
+                System.out.println(newUser.getPassword());
+            }else {
+                System.out.println("Already exist");
+            }
+            auth.closeSession();
         });
         backToSign.setOnAction((e) -> {
             primaryStage.setScene(prevScene);
