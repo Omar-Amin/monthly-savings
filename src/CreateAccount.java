@@ -21,13 +21,20 @@ public class CreateAccount {
     }
 
     private void setupActionHandlers(){
+        signUp.setOnAction((e) -> {
+            String mail, name, password, confirm;
+            mail = emailInsert.getText();
+            name = fullName.getText();
+            password = passwordInsert.getText();
+            confirm = passwordConfirm.getText();
+        });
         backToSign.setOnAction((e) -> {
             primaryStage.setScene(prevScene);
         });
     }
 
     private void start(){
-        // Textfield setup
+        // TextField setup
         emailInsert = (TextField) scene.lookup("#emailInsert");
         fullName = (TextField) scene.lookup("#fullName");
         passwordInsert = (PasswordField) scene.lookup("#passwordInsert");

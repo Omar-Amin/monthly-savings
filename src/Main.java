@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         Main main = new Main();
         main.run();
     }
@@ -114,13 +114,10 @@ public class Main {
     }
 
     private void setup(){
-        /*
         String connectionUrl = "jdbc:sqlserver://localhost:host";
         String user = "sa";
         String password = "password";
         String databaseName = "databasse";
-        */
-
 
 
         server = new Server(connectionUrl,user,password,databaseName);
@@ -129,4 +126,5 @@ public class Main {
         server.buildFactory();
     }
 
+    */
 }

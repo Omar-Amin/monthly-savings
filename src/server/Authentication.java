@@ -1,11 +1,13 @@
 package server;
 
+import org.hibernate.query.Query;
 import tables.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Authentication {
@@ -20,13 +22,8 @@ public class Authentication {
      * Logs in if the email and password is correct.
      * Identical emails cannot exist. (because of how the user is created)
      * */
-    public User logIn(){
-        System.out.println("email:");
-        String email = sc.next();
-        System.out.println("password:");
-        String password = sc.next();
+    public User logIn(String email, String password){
         User user = returnUser(email);
-        session.close();
         return user != null && user.getPassword().equals(Security.authenticatePassword(password,user.getSalt())) ? user : null;
     }
 
@@ -61,9 +58,12 @@ public class Authentication {
 
 
     private User returnUser(String email){
-        Criteria criteria = session.createCriteria(User.class);
-        return (User) criteria.add(Restrictions.eq("email", email))
-                .uniqueResult();
+        List users = session.createQuery("FROM User U WHERE U.email = " + "'" + email + "'").list();
+        return users.size() == 0 ? null : (User) users.get(0);
+    }
+
+    public void closeSession(){
+        session.close();
     }
 
 }
