@@ -1,6 +1,4 @@
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,10 +11,12 @@ import java.io.IOException;
 
 public class MainUI extends Application {
 
-    public Button createAccount;
-    public TextField emailInsert;
-    public Button logIn;
-    public PasswordField passwordInsert;
+    private Button createAccount;
+    private TextField emailInsert;
+    private Button logIn;
+    private PasswordField passwordInsert;
+    private Scene main;
+    private Scene createScene;
 
     public static void main(String[] args){
         launch(args);
@@ -24,16 +24,15 @@ public class MainUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("fxml/MainUI.fxml"));
+        setController();
         primaryStage.setTitle("Monthly savings");
-        Scene scene = new Scene(parent);
-        scene.getStylesheets().add("css/login.css");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(main);
         primaryStage.show();
-        emailInsert = (TextField) scene.lookup("#emailInsert");
-        passwordInsert = (PasswordField) scene.lookup("#passwordInsert");
-        logIn = (Button) scene.lookup("#logIn");
-        createAccount = (Button) scene.lookup("#createAccount");
+        new CreateAccount(createScene,main,primaryStage);
+        emailInsert = (TextField) main.lookup("#emailInsert");
+        passwordInsert = (PasswordField) main.lookup("#passwordInsert");
+        logIn = (Button) main.lookup("#logIn");
+        createAccount = (Button) main.lookup("#createAccount");
 
         logIn.setOnAction((e) ->{
             System.out.println(emailInsert.getText());
@@ -41,12 +40,17 @@ public class MainUI extends Application {
         });
 
         createAccount.setOnAction((e) -> {
-            try {
-                scene.setRoot(FXMLLoader.load(getClass().getResource("fxml/createAccount.fxml")));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
+            primaryStage.setScene(createScene);
         });
+    }
+
+    private void setController() throws IOException {
+        Parent firstPage = FXMLLoader.load(getClass().getResource("fxml/MainUI.fxml"));
+        main = new Scene(firstPage);
+        main.getStylesheets().add("css/login.css");
+        createScene = new Scene(FXMLLoader.load(getClass().getResource("fxml/CreateAccount.fxml")));
+        createScene.getStylesheets().add("css/login.css");
+
     }
 
 }

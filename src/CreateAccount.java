@@ -1,22 +1,40 @@
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
-import static javafx.application.Application.launch;
-
 public class CreateAccount {
 
-    public CreateAccount(){
-        System.out.println("CreateAccount");
+    private final Scene scene, prevScene;
+    private final Stage primaryStage;
+    private Button backToSign,signUp;
+    private TextField emailInsert, fullName, passwordInsert, passwordConfirm;
+
+
+    public CreateAccount(Scene scene,Scene prevScene, Stage primaryStage){
+        this.scene = scene;
+        this.primaryStage = primaryStage;
+        this.prevScene = prevScene;
+        start();
+        setupActionHandlers();
+    }
+
+    private void setupActionHandlers(){
+        backToSign.setOnAction((e) -> {
+            primaryStage.setScene(prevScene);
+        });
+    }
+
+    private void start(){
+        // Textfield setup
+        emailInsert = (TextField) scene.lookup("#emailInsert");
+        fullName = (TextField) scene.lookup("#fullName");
+        passwordInsert = (PasswordField) scene.lookup("#passwordInsert");
+        passwordConfirm = (PasswordField) scene.lookup("#passwordConfirm");
+        // Button setup
+        signUp = (Button) scene.lookup("#signUp");
+        backToSign = (Button) scene.lookup("#backToSign");
     }
 
 }
