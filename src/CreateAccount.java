@@ -1,3 +1,4 @@
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -5,6 +6,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import server.Authentication;
 import tables.User;
+
+import java.io.IOException;
 
 public class CreateAccount {
 
@@ -32,8 +35,11 @@ public class CreateAccount {
             confirm = passwordConfirm.getText();
             User newUser = auth.createUser(mail,name,password);
             if(newUser != null && password.equals(confirm)){
-                System.out.println(newUser.getPassword());
+                try {
+                    Controller.stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml"))));
+                } catch (IOException ignored) {}
             }else {
+                // TODO: Visualize that there is an error.
                 System.out.println("Already exist");
             }
             auth.closeSession();

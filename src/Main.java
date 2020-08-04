@@ -6,6 +6,8 @@ import server.Server;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+// NOTE: The command line version doesn't work
+// it needs a Scanner object in server/Authentication.java and Operations.java.
 public class Main {
 
 /*    public static void main(String[] args) {

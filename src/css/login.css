@@ -9,6 +9,7 @@
 
 #createAccount{
     -fx-background-color: none;
+    -fx-text-fill: #cbc7c7;
 }
 
 #createAccount:hover{
@@ -49,6 +50,7 @@
 
 #backToSign{
     -fx-background-color: none;
+    -fx-text-fill: #cbc7c7;
 }
 
 #backToSign:hover{

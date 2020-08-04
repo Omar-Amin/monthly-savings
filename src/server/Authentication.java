@@ -2,16 +2,13 @@ package server;
 
 import org.hibernate.query.Query;
 import tables.User;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class Authentication {
-    private final Scanner sc = new Scanner(System.in);
+
     private final Session session;
 
     public Authentication(Server server){
@@ -32,6 +29,9 @@ public class Authentication {
      * */
     public User createUser(String email, String name, String passwordInsert){
         String firstName, lastName;
+        // Doesn't make a fair split, if the user has a middle name
+        // it ignores the last name and takes the middle name as lastname
+        // (not necessary to fix at the moment)
         String[] splitName = name.split(" ");
         if(splitName.length < 2){
             return null;
