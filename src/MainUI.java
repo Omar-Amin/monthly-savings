@@ -14,6 +14,7 @@ import server.Server;
 import tables.User;
 
 import java.io.IOException;
+import java.util.Collection;
 
 public class MainUI extends Application {
 
@@ -37,11 +38,12 @@ public class MainUI extends Application {
     public void start(Stage primaryStage) throws IOException {
         Controller.stage = primaryStage;
         setController();
+        Controller.previousScene = main;
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("Monthly savings");
         primaryStage.setScene(main);
         primaryStage.show();
-        new CreateAccount(createScene,main);
+        new CreateAccount(createScene);
         emailInsert = (TextField) main.lookup("#emailInsert");
         passwordInsert = (PasswordField) main.lookup("#passwordInsert");
         logIn = (Button) main.lookup("#logIn");
@@ -57,6 +59,8 @@ public class MainUI extends Application {
                 try {
                     Scene mainPage = new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml")));
                     mainPage.setFill(Color.TRANSPARENT);
+                    mainPage.getStylesheets().add("css/mainpage.css");
+                    Controller.previousScene = mainPage;
                     primaryStage.setScene(mainPage);
                 } catch (IOException ignored) {}
             }else {

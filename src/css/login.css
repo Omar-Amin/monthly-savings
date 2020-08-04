@@ -92,3 +92,11 @@
     -fx-border-color: #25ee8f;
     -fx-prompt-text-fill: #E9E7E7;
 }
+
+#closeIcon{
+    -fx-opacity: 0.8;
+}
+
+#closeIcon:hover{
+    -fx-opacity: 1;
+}

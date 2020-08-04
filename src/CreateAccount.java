@@ -12,14 +12,12 @@ import java.io.IOException;
 
 public class CreateAccount {
 
-    private final Scene scene, prevScene;
+    private final Scene scene;
     private Button backToSign,signUp;
     private TextField emailInsert, fullName, passwordInsert, passwordConfirm;
 
-
-    public CreateAccount(Scene scene,Scene prevScene){
+    public CreateAccount(Scene scene){
         this.scene = scene;
-        this.prevScene = prevScene;
         start();
         setupActionHandlers();
     }
@@ -37,6 +35,7 @@ public class CreateAccount {
                 try {
                     Scene mainPage = new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml")));
                     mainPage.setFill(Color.TRANSPARENT);
+                    mainPage.getStylesheets().add("css/mainpage.css");
                     Controller.stage.setScene(mainPage);
                 } catch (IOException ignored) {}
             }else {
@@ -46,7 +45,7 @@ public class CreateAccount {
             auth.closeSession();
         });
         backToSign.setOnAction((e) -> {
-            Controller.stage.setScene(prevScene);
+            Controller.stage.setScene(Controller.previousScene);
         });
     }
 
