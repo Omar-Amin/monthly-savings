@@ -30,12 +30,13 @@ public class CreateAccount {
             name = fullName.getText();
             password = passwordInsert.getText();
             confirm = passwordConfirm.getText();
-            User newUser = auth.createUser(mail,name,password);
-            if(newUser != null && password.equals(confirm)){
+            Controller.user = auth.createUser(mail,name,password);
+            if(Controller.user != null && password.equals(confirm)){
                 try {
                     Scene mainPage = new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml")));
                     mainPage.setFill(Color.TRANSPARENT);
                     mainPage.getStylesheets().add("css/mainpage.css");
+                    System.out.println(mainPage.getRoot());
                     Controller.stage.setScene(mainPage);
                 } catch (IOException ignored) {}
             }else {

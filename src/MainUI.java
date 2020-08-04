@@ -27,7 +27,6 @@ public class MainUI extends Application {
     private Scene createScene;
     // Server and user
     protected static Server server;
-    private User user;
 
     public static void main(String[] args){
         setupServer();
@@ -54,13 +53,12 @@ public class MainUI extends Application {
             String mail, password;
             mail = emailInsert.getText();
             password = passwordInsert.getText();
-            user = authentication.logIn(mail,password);
+            Controller.user = authentication.logIn(mail,password);
             if(authentication.logIn(mail,password) != null){
                 try {
                     Scene mainPage = new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml")));
                     mainPage.setFill(Color.TRANSPARENT);
                     mainPage.getStylesheets().add("css/mainpage.css");
-                    Controller.previousScene = mainPage;
                     primaryStage.setScene(mainPage);
                 } catch (IOException ignored) {}
             }else {

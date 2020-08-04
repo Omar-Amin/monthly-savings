@@ -15,6 +15,7 @@ public class User {
     private final permissions permission = permissions.user;
     private int monthlyPayment;
     private String salt;
+    private int balance;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private final List<Payment> payments = new ArrayList<>();
@@ -108,4 +109,11 @@ public class User {
         return salt;
     }
 
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
 }

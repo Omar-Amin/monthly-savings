@@ -5,6 +5,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="550.0" prefWidth="953.0" style="-fx-background-color: #1B1B1B; -fx-border-radius: 15 15 15 15; -fx-background-radius: 15 15 15 15;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainPage">
    <children>
@@ -15,7 +17,7 @@
                   <Image url="@../icons/homeIcon.png" />
                </image>
                <cursor>
-                  <Cursor fx:constant="HAND"/>
+                  <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
             <ImageView id="paymentImg" fitHeight="25.0" fitWidth="35.0" layoutX="30.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
@@ -23,7 +25,7 @@
                   <Image url="@../icons/paymentIcon.png" />
                </image>
                <cursor>
-                  <Cursor fx:constant="HAND"/>
+                  <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
             <ImageView id="salaryImg" fitHeight="35.0" fitWidth="35.0" layoutX="32.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
@@ -31,7 +33,7 @@
                   <Image url="@../icons/salaryIcon.png" />
                </image>
                <cursor>
-                  <Cursor fx:constant="HAND"/>
+                  <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
             <ImageView fitHeight="95.0" fitWidth="74.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
@@ -41,21 +43,39 @@
             </ImageView>
          </children>
       </Pane>
-      <ImageView id="logOut" fitHeight="25.0" fitWidth="25.0" layoutX="31.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#logOut">
+      <ImageView id="logOut" fitHeight="25.0" fitWidth="25.0" layoutX="31.0" layoutY="503.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/logOut.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND"/>
-         </cursor>
-      </ImageView>
-      <ImageView id="closeIcon" fitHeight="32.0" fitWidth="25.0" layoutX="910.0" layoutY="14.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../icons/closeIcon.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Pane layoutX="656.0" prefHeight="550.0" prefWidth="297.0" style="-fx-background-color: #2F2F2F;-fx-border-radius: 0 15 15 0; -fx-background-radius: 0 15 15 0;">
+         <children>
+            <ImageView id="closeIcon" fitHeight="20.0" fitWidth="20.0" layoutX="262" layoutY="14.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/closeIcon.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Text fill="WHITE" layoutX="27.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account">
+               <font>
+                  <Font name="Calibri" size="41.0" />
+               </font>
+            </Text>
+            <Text fill="#dddddd" layoutX="27.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:">
+               <font>
+                  <Font name="Calibri Bold" size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="balance" fill="#30ca80" layoutX="104.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 0">
+               <font>
+                  <Font name="Calibri Bold" size="19.0" />
+               </font>
+            </Text>
+         </children></Pane>
    </children>
 </AnchorPane>

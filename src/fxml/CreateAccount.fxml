@@ -31,7 +31,7 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <ImageView id="closeIcon" fitHeight="32.0" fitWidth="25.0" layoutX="910.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#closeApp">
+      <ImageView id="closeIcon" fitHeight="20.0" fitWidth="20.0" layoutX="918.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#closeApp">
          <image>
             <Image url="@../icons/closeIcon.png" />
          </image>
