@@ -3,6 +3,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import server.Authentication;
 import tables.User;
@@ -12,14 +13,12 @@ import java.io.IOException;
 public class CreateAccount {
 
     private final Scene scene, prevScene;
-    private final Stage primaryStage;
     private Button backToSign,signUp;
     private TextField emailInsert, fullName, passwordInsert, passwordConfirm;
 
 
-    public CreateAccount(Scene scene,Scene prevScene, Stage primaryStage){
+    public CreateAccount(Scene scene,Scene prevScene){
         this.scene = scene;
-        this.primaryStage = primaryStage;
         this.prevScene = prevScene;
         start();
         setupActionHandlers();
@@ -36,7 +35,9 @@ public class CreateAccount {
             User newUser = auth.createUser(mail,name,password);
             if(newUser != null && password.equals(confirm)){
                 try {
-                    Controller.stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml"))));
+                    Scene mainPage = new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml")));
+                    mainPage.setFill(Color.TRANSPARENT);
+                    Controller.stage.setScene(mainPage);
                 } catch (IOException ignored) {}
             }else {
                 // TODO: Visualize that there is an error.
@@ -45,7 +46,7 @@ public class CreateAccount {
             auth.closeSession();
         });
         backToSign.setOnAction((e) -> {
-            primaryStage.setScene(prevScene);
+            Controller.stage.setScene(prevScene);
         });
     }
 

@@ -5,9 +5,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import org.hibernate.engine.jdbc.spi.SchemaNameResolver;
-import org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl;
+import javafx.stage.StageStyle;
 import server.Authentication;
 import server.Server;
 import tables.User;
@@ -36,10 +37,11 @@ public class MainUI extends Application {
     public void start(Stage primaryStage) throws IOException {
         Controller.stage = primaryStage;
         setController();
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("Monthly savings");
         primaryStage.setScene(main);
         primaryStage.show();
-        new CreateAccount(createScene,main,primaryStage);
+        new CreateAccount(createScene,main);
         emailInsert = (TextField) main.lookup("#emailInsert");
         passwordInsert = (PasswordField) main.lookup("#passwordInsert");
         logIn = (Button) main.lookup("#logIn");
@@ -53,7 +55,9 @@ public class MainUI extends Application {
             user = authentication.logIn(mail,password);
             if(authentication.logIn(mail,password) != null){
                 try {
-                    primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml"))));
+                    Scene mainPage = new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml")));
+                    mainPage.setFill(Color.TRANSPARENT);
+                    primaryStage.setScene(mainPage);
                 } catch (IOException ignored) {}
             }else {
                 // TODO: Indication of that the password was wrong
@@ -73,6 +77,8 @@ public class MainUI extends Application {
         main.getStylesheets().add("css/login.css");
         createScene = new Scene(FXMLLoader.load(getClass().getResource("fxml/CreateAccount.fxml")));
         createScene.getStylesheets().add("css/login.css");
+        main.setFill(Color.TRANSPARENT);
+        createScene.setFill(Color.TRANSPARENT);
     }
 
     private static void setupServer(){
@@ -91,4 +97,7 @@ public class MainUI extends Application {
         server.buildFactory();
     }
 
+    public void closeApp(MouseEvent mouseEvent) {
+        Controller.stage.close();
+    }
 }
