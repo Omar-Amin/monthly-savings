@@ -38,8 +38,8 @@ public class MainUI extends Application {
         Controller.stage = primaryStage;
         setController();
         Controller.previousScene = main;
+        // Setting up stage
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.setTitle("Monthly savings");
         primaryStage.setScene(main);
         primaryStage.show();
         new CreateAccount(createScene);
@@ -48,6 +48,7 @@ public class MainUI extends Application {
         logIn = (Button) main.lookup("#logIn");
         createAccount = (Button) main.lookup("#createAccount");
 
+        // log in
         logIn.setOnAction((e) ->{
             Authentication authentication = new Authentication(server);
             String mail, password;
@@ -68,11 +69,13 @@ public class MainUI extends Application {
             authentication.closeSession();
         });
 
+        // creating account, switches scene
         createAccount.setOnAction((e) -> {
             primaryStage.setScene(createScene);
         });
     }
 
+    // setup scenes
     private void setController() throws IOException {
         Parent firstPage = FXMLLoader.load(getClass().getResource("fxml/MainUI.fxml"));
         main = new Scene(firstPage);

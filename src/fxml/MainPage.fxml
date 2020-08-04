@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -51,7 +52,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Pane layoutX="656.0" prefHeight="550.0" prefWidth="297.0" style="-fx-background-color: #2F2F2F;-fx-border-radius: 0 15 15 0; -fx-background-radius: 0 15 15 0;">
+      <Pane layoutX="656.0" prefHeight="479.0" prefWidth="297.0" style="-fx-background-color: #2F2F2F; -fx-border-radius: 0 15 0 15; -fx-background-radius: 0 15 0 15;">
          <children>
             <ImageView id="closeIcon" fitHeight="20.0" fitWidth="20.0" layoutX="262" layoutY="14.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -71,11 +72,25 @@
                   <Font name="Calibri Bold" size="19.0" />
                </font>
             </Text>
-            <Text fx:id="balance" fill="#30ca80" layoutX="104.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 0">
+            <Text fill="#30ca80" layoutX="104.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
                <font>
                   <Font name="Calibri Bold" size="19.0" />
                </font>
             </Text>
+            <TextField fx:id="balance" editable="false" layoutX="104.0" layoutY="65.0" prefHeight="25.0" prefWidth="118.0" style="-fx-background-color: none;">
+               <font>
+                  <Font name="Calibri Bold" size="19.0" />
+               </font></TextField>
+            <ImageView fx:id="editBalance" onMouseClicked="#changeField" fitHeight="15.0" fitWidth="15.0" layoutX="232.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/editBalance.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="saveBalance" onMouseClicked="#saveMethod" fitHeight="15.0" fitWidth="15.0" layoutX="232.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/checkIcon.png" />
+               </image>
+            </ImageView>
          </children></Pane>
    </children>
 </AnchorPane>

@@ -29,3 +29,27 @@
 #salaryImg:hover{
     -fx-opacity: 1;
 }
+
+#balance{
+    -fx-text-fill: #30CA80;
+    -fx-highlight-fill: null;
+    -fx-highlight-text-fill: null;
+}
+
+#editBalance{
+    -fx-opacity: 0.8;
+}
+
+#editBalance:hover{
+    -fx-opacity: 1;
+    -fx-cursor: hand;
+}
+
+#saveBalance{
+    -fx-opacity: 0.8;
+}
+
+#saveBalance:hover{
+    -fx-opacity: 1;
+    -fx-cursor: hand;
+}
