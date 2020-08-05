@@ -1,6 +1,9 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -11,9 +14,12 @@ import org.hibernate.Transaction;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.Observable;
 
 public class MainPage {
 
+    @FXML
+    private PieChart overview;
     @FXML
     private ImageView saveBalance;
     @FXML
@@ -24,6 +30,14 @@ public class MainPage {
     @FXML
     private void initialize(){
         balance.setText(Controller.user.getBalance()+"");
+        setupChart();
+    }
+
+    private void setupChart(){
+        ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
+        data.add(new PieChart.Data("Unspent money",Controller.user.getIncome()-Controller.user.getMonthlyPayment()));
+        data.add(new PieChart.Data("Payments",Controller.user.getMonthlyPayment()));
+        overview.setData(data);
     }
 
     public void closeApp(MouseEvent mouseEvent) {
@@ -48,7 +62,9 @@ public class MainPage {
             Controller.user.setBalance(Integer.parseInt(balance.getText()));
             session.update(Controller.user);
             tr.commit();
-        } catch (NumberFormatException ignored) {}
+        } catch (NumberFormatException ignored) {
+            balance.setText(Controller.user.getBalance()+"");
+        }
         balance.setEditable(false);
         saveBalance.setVisible(false);
         editBalance.setVisible(true);
