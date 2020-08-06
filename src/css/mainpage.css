@@ -54,5 +54,21 @@
     -fx-cursor: hand;
 }
 
-.default-color0.chart-pie {-fx-pie-color: #30CA80;}
-.default-color1.chart-pie {-fx-pie-color: #ff4a4a;}
+.default-color0.chart-pie {-fx-pie-color: #30CA80;-fx-opacity: 0.8;}
+.default-color1.chart-pie {-fx-pie-color: #ff4a4a; -fx-opacity: 0.8;}
+
+.default-color0.chart-pie:hover {-fx-opacity: 1;}
+.default-color1.chart-pie:hover {-fx-opacity: 1;}
+
+#overview{
+    -fx-pref-width: 225;
+    -fx-pref-height: 275;
+    -fx-min-width: 225;
+    -fx-min-height: 275;
+    -fx-max-width: 225;
+    -fx-max-height: 275;
+}
+
+.chart-pie-label{
+    -fx-fill: #fff;
+}

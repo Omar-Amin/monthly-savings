@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -92,12 +93,17 @@
                   <Image url="@../icons/checkIcon.png" />
                </image>
             </ImageView>
-            <PieChart fx:id="overview" layoutX="27.0" layoutY="177.0" prefHeight="182.0" prefWidth="243.0" />
             <Text fill="#dddddd" layoutX="29.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overview">
                <font>
                   <Font name="Calibri Bold" size="19.0" />
                </font>
             </Text>
+            <PieChart fx:id="overview" labelLineLength="5.0" layoutX="33.0" layoutY="161.0" prefHeight="276.0" prefWidth="243.0" />
+            <Label fx:id="caption" layoutX="29.0" layoutY="441.0" textAlignment="CENTER">
+               <font>
+                  <Font name="Calibri" size="15.0" />
+               </font>
+            </Label>
          </children></Pane>
    </children>
 </AnchorPane>
