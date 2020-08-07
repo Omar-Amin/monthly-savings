@@ -1,6 +1,8 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -13,6 +15,8 @@ import org.hibernate.Transaction;
 import tables.Payment;
 import tables.User;
 import tables.paymentType;
+
+import java.io.IOException;
 
 public class popupPayment {
 
@@ -42,7 +46,8 @@ public class popupPayment {
         stage.close();
     }
 
-    public void updatePayments(MouseEvent mouseEvent) throws NumberFormatException{
+    public void updatePayments(MouseEvent mouseEvent) throws NumberFormatException, IOException {
+        Stage stage = (Stage) closeIcon.getScene().getWindow();
         if(!paymentCost.getText().isEmpty() && !paymentName.getText().isEmpty() && paymentType.getValue() != null){
             paymentType ptype;
             if(paymentType.getValue().equals("Daily")){
@@ -70,6 +75,7 @@ public class popupPayment {
             }finally {
                 session.close();
             }
+            stage.close();
         }
     }
 

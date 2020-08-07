@@ -1,25 +1,26 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ListView;
+import javafx.scene.input.ScrollEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import tables.Payment;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class PaymentPage {
 
     @FXML
+    private ListView<Payment> listPayment;
+
+    @FXML
     private Button addPayment;
 
-    @FXML
-    private ImageView homeImg;
-
-    @FXML
-    private ImageView salaryImg;
+    private int current = 0;
 
     @FXML
     private void initialize(){
@@ -35,22 +36,34 @@ public class PaymentPage {
 
             } catch (IOException ignored) {}
         });
+        ObservableList<Payment> payments = FXCollections.observableArrayList(Controller.user.getPayments());
+        listPayment.setItems(payments);
+        listPayment.setCellFactory(p -> new PaymentCell());
+        current = payments.size();
     }
 
-    public void logOut(MouseEvent mouseEvent) throws IOException {
+    public void logOut() throws IOException {
         Controller.user = null;
         Controller.stage.hide();
         new MainUI().start(new Stage());
     }
 
-    public void switchHome(MouseEvent mouseEvent) throws IOException {
+    public void switchHome() throws IOException {
         Scene main = new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml")));
         main.getStylesheets().add("css/mainpage.css");
         main.setFill(javafx.scene.paint.Color.TRANSPARENT);
         Controller.stage.setScene(main);
     }
 
-    public void closeApp(MouseEvent mouseEvent) {
+    public void closeApp() {
         Controller.stage.close();
+    }
+
+    public void refresh() {
+        if(current != Controller.user.getPayments().size()){
+            ObservableList<Payment> payments = FXCollections.observableArrayList(Controller.user.getPayments());
+            listPayment.setItems(payments);
+            listPayment.setCellFactory(p -> new PaymentCell());
+        }
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <columnConstraints>
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="176.0" minWidth="0.0" prefWidth="0.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="306.0" minWidth="52.0" prefWidth="291.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.0" minWidth="6.0" prefWidth="229.0" />
+        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="255.0" minWidth="52.0" prefWidth="121.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="19.0" minHeight="7.0" prefHeight="11.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <Label fx:id="name" text="Label" textFill="WHITE" GridPane.columnIndex="1">
+        <font>
+        <Font name="SansSerif" size="17.0" />
+        </font>
+    </Label>
+    <Label fx:id="type" text="Label" textFill="WHITE" GridPane.columnIndex="2">
+        <font>
+            <Font name="SansSerif" size="17.0" />
+        </font>
+    </Label>
+    <Label fx:id="cost" text="Label" textFill="WHITE" GridPane.columnIndex="3">
+    <font>
+        <Font name="SansSerif" size="17.0" />
+    </font>
+    </Label>
+    <Line endX="518.29296875" startX="-133.2071075439453" stroke="WHITE" strokeLineCap="ROUND" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+</GridPane>
