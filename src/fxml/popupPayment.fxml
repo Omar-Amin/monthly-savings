@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="250.0" prefWidth="300.0" style="-fx-background-color: #2f2f2f; -fx-border-radius: 15 15 15 15; -fx-background-radius: 15 15 15 15;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="popupPayment">
+    <ImageView fx:id="closeIcon" fitHeight="20.0" fitWidth="20.0" layoutX="268.0" layoutY="12.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../icons/closeIcon.png" />
+        </image>
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </ImageView>
+
+</AnchorPane>

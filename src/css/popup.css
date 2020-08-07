@@ -1,0 +1,7 @@
+#closeIcon{
+    -fx-opacity: 0.8;
+}
+
+#closeIcon:hover{
+    -fx-opacity: 1;
+}
