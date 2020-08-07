@@ -5,3 +5,63 @@
 #closeIcon:hover{
     -fx-opacity: 1;
 }
+
+#paymentCost{
+    -fx-background-color: none;
+    -fx-border-color: #30CA80;
+    -fx-prompt-text-fill: #CBC7C7;
+    -fx-text-fill: #fff;
+}
+
+#paymentName{
+    -fx-background-color: none;
+    -fx-border-color: #30CA80;
+    -fx-prompt-text-fill: #CBC7C7;
+    -fx-text-fill: #fff;
+}
+
+#paymentCost:hover{
+    -fx-border-color: #25ee8f;
+    -fx-prompt-text-fill: #e9e7e7;
+}
+
+#paymentName:hover{
+    -fx-border-color: #25ee8f;
+    -fx-prompt-text-fill: #e9e7e7;
+}
+
+#paymentType{
+
+}
+
+.combo-box{
+    -fx-background-color: none;
+    -fx-border-color: #30CA80;
+    -fx-prompt-text-fill: #CBC7C7;
+    -fx-text-fill: #fff;
+}
+
+.combo-box .list-cell{
+    -fx-background-color: #2f2f2f;
+    -fx-prompt-text-fill: #CBC7C7;
+    -fx-text-fill: #fff;
+}
+
+.combo-box .list-cell:hover{
+    -fx-background-color: #393939;
+    -fx-text-fill: #e9e7e7;
+}
+
+.combo-box .list-view{
+    -fx-border-color: #30CA80;
+}
+
+#savePayment{
+    -fx-background-color: #31AD72;
+    -fx-text-fill: #fff;
+}
+
+#savePayment:hover{
+    -fx-background-color: #30CA80;
+    -fx-cursor: hand;
+}
