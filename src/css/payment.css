@@ -1,0 +1,44 @@
+#closeIcon{
+    -fx-opacity: 0.8;
+}
+
+#closeIcon:hover{
+    -fx-opacity: 1;
+}
+
+#logOut{
+    -fx-opacity: 0.8;
+}
+
+#logOut:hover{
+    -fx-opacity: 1;
+}
+
+#homeImg{
+    -fx-opacity: 0.8;
+}
+
+#homeImg:hover{
+    -fx-opacity: 1;
+}
+
+#salaryImg{
+    -fx-opacity: 0.8;
+}
+
+#salaryImg:hover{
+    -fx-opacity: 1;
+}
+
+#addPayment{
+    -fx-background-color: #414141;
+    -fx-text-fill: #d1d1d1;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+
+#addPayment:hover{
+    -fx-background-color: #474747;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+}

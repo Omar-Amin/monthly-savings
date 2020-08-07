@@ -23,7 +23,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView id="paymentImg" fitHeight="25.0" fitWidth="35.0" layoutX="30.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="paymentImg" fitHeight="25.0" fitWidth="35.0" layoutX="30.0" onMouseClicked="#switchPayment" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icons/paymentIcon.png" />
                </image>

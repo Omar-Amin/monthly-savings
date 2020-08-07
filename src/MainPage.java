@@ -87,4 +87,11 @@ public class MainPage {
         saveBalance.setVisible(false);
         editBalance.setVisible(true);
     }
+
+    public void switchPayment(MouseEvent mouseEvent) throws IOException {
+        Scene payment = new Scene(FXMLLoader.load(getClass().getResource("fxml/PaymentPage.fxml")));
+        payment.getStylesheets().add("css/payment.css");
+        payment.setFill(javafx.scene.paint.Color.TRANSPARENT);
+        Controller.stage.setScene(payment);
+    }
 }
