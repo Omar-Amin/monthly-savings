@@ -52,6 +52,9 @@ public class PaymentPage {
         Controller.stage.close();
     }
 
+    /**
+     * Updates the list after adding a new payment.
+     * */
     public void refresh() {
         if(current != Controller.user.getPayments().size()){
             ObservableList<Payment> payments = FXCollections.observableArrayList(Controller.user.getPayments());
@@ -60,6 +63,9 @@ public class PaymentPage {
         }
     }
 
+    /**
+     * Switches to UserSettings.
+     * */
     public void switchSalary() throws IOException {
         Scene salary = new Scene(FXMLLoader.load(getClass().getResource("fxml/UserSettings.fxml")));
         salary.getStylesheets().add("css/usersettings.css");
@@ -67,6 +73,9 @@ public class PaymentPage {
         Controller.stage.setScene(salary);
     }
 
+    /**
+     * Switches to MainPage.
+     * */
     public void switchHome() throws IOException {
         Scene main = new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml")));
         main.getStylesheets().add("css/mainpage.css");

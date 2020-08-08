@@ -30,5 +30,26 @@
     -fx-opacity: 1;
 }
 
+#income{
+    -fx-text-fill: #30CA80;
+    -fx-highlight-fill: null;
+    -fx-highlight-text-fill: null;
+}
 
+#editIncome{
+    -fx-opacity: 0.8;
+}
 
+#editIncome:hover{
+    -fx-opacity: 1;
+    -fx-cursor: hand;
+}
+
+#saveIncome{
+    -fx-opacity: 0.8;
+}
+
+#saveIncome:hover{
+    -fx-opacity: 1;
+    -fx-cursor: hand;
+}
