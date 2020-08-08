@@ -1,22 +1,16 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import tables.Payment;
-import tables.User;
 import tables.paymentType;
 
-import java.io.IOException;
 
 public class popupPayment {
 
@@ -30,9 +24,6 @@ public class popupPayment {
     private TextField paymentCost;
 
     @FXML
-    private Button savePayment;
-
-    @FXML
     private ImageView closeIcon;
 
     @FXML
@@ -41,30 +32,39 @@ public class popupPayment {
         paymentType.setItems(options);
     }
 
-    public void closeApp(MouseEvent mouseEvent) {
+    public void closeApp() {
         Stage stage = (Stage) closeIcon.getScene().getWindow();
         stage.close();
     }
 
-    public void updatePayments(MouseEvent mouseEvent) throws NumberFormatException, IOException {
+    /**
+     * Creates payment and adds it to the user.
+     * */
+    public void updatePayments() throws NumberFormatException {
         Stage stage = (Stage) closeIcon.getScene().getWindow();
         if(!paymentCost.getText().isEmpty() && !paymentName.getText().isEmpty() && paymentType.getValue() != null){
             paymentType ptype;
-            if(paymentType.getValue().equals("Daily")){
-                ptype = tables.paymentType.daily;
-            }else if(paymentType.getValue().equals("Monthly")){
-                ptype = tables.paymentType.monthly;
-            }else if(paymentType.getValue().equals("Quarterly")){
-                ptype = tables.paymentType.quarterly;
-            }else {
-                ptype = tables.paymentType.yearly;
+
+            switch (paymentType.getValue()) {
+                case "Daily":
+                    ptype = tables.paymentType.daily;
+                    break;
+                case "Monthly":
+                    ptype = tables.paymentType.monthly;
+                    break;
+                case "Quarterly":
+                    ptype = tables.paymentType.quarterly;
+                    break;
+                default:
+                    ptype = tables.paymentType.yearly;
+                    break;
             }
+
             Payment payment = new Payment(paymentName.getText(), Integer.parseInt(paymentCost.getText()),ptype);
             int monthly = getMonthly(payment);
             Controller.user.addPayment(payment);
             Controller.user.setMonthlyPayment(Controller.user.getMonthlyPayment() + monthly);
-            Session session = MainUI.server.getSession();
-            try{
+            try (Session session = MainUI.server.getSession()) {
                 Transaction tr = session.beginTransaction();
                 payment.setUser(Controller.user);
                 session.save(payment);
@@ -72,13 +72,14 @@ public class popupPayment {
                 tr.commit();
             } catch (HibernateException e) {
                 System.out.println("Illegal argument.");
-            }finally {
-                session.close();
             }
             stage.close();
         }
     }
 
+    /**
+     * Get information on how much you pay for the payment pr. month.
+     * */
     private int getMonthly(Payment p){
         int payments;
         if(p.getType() == tables.paymentType.daily){

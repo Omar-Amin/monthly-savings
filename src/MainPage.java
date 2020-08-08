@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -18,6 +19,8 @@ import java.io.IOException;
 
 public class MainPage {
 
+    @FXML
+    private Text welcome;
     @FXML
     private PieChart overview;
     @FXML
@@ -32,6 +35,7 @@ public class MainPage {
     @FXML
     private void initialize(){
         balance.setText(Controller.user.getBalance()+"");
+        welcome.setText("Welcome " + Controller.user.getFirstName() + "!");
         setupChart();
     }
 
