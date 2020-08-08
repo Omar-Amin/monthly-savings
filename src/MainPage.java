@@ -8,15 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.awt.*;
 import java.io.IOException;
-import java.util.Observable;
 
 public class MainPage {
 
@@ -58,23 +56,23 @@ public class MainPage {
         });
     }
 
-    public void closeApp(MouseEvent mouseEvent) {
+    public void closeApp() {
         Controller.stage.close();
     }
 
-    public void logOut(MouseEvent mouseEvent) throws IOException {
+    public void logOut() throws IOException {
         Controller.user = null;
         Controller.stage.hide();
         new MainUI().start(new Stage());
     }
 
-    public void changeField(MouseEvent mouseEvent) {
+    public void changeField() {
         balance.setEditable(true);
         editBalance.setVisible(false);
         saveBalance.setVisible(true);
     }
 
-    public void saveMethod(MouseEvent mouseEvent){
+    public void saveMethod(){
         try (Session session = MainUI.server.getSession()) {
             Transaction tr = session.beginTransaction();
             Controller.user.setBalance(Integer.parseInt(balance.getText()));
@@ -88,10 +86,17 @@ public class MainPage {
         editBalance.setVisible(true);
     }
 
-    public void switchPayment(MouseEvent mouseEvent) throws IOException {
+    public void switchPayment() throws IOException {
         Scene payment = new Scene(FXMLLoader.load(getClass().getResource("fxml/PaymentPage.fxml")));
         payment.getStylesheets().add("css/payment.css");
         payment.setFill(javafx.scene.paint.Color.TRANSPARENT);
         Controller.stage.setScene(payment);
+    }
+
+    public void switchSalary() throws IOException {
+        Scene salary = new Scene(FXMLLoader.load(getClass().getResource("fxml/UserSettings.fxml")));
+        salary.getStylesheets().add("css/usersettings.css");
+        salary.setFill(Color.TRANSPARENT);
+        Controller.stage.setScene(salary);
     }
 }

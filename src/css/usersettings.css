@@ -1,0 +1,34 @@
+#closeIcon{
+    -fx-opacity: 0.8;
+}
+
+#closeIcon:hover{
+    -fx-opacity: 1;
+}
+
+#logOut{
+    -fx-opacity: 0.8;
+}
+
+#logOut:hover{
+    -fx-opacity: 1;
+}
+
+#paymentImg{
+    -fx-opacity: 0.8;
+}
+
+#paymentImg:hover{
+    -fx-opacity: 1;
+}
+
+#homeImg{
+    -fx-opacity: 0.8;
+}
+
+#homeImg:hover{
+    -fx-opacity: 1;
+}
+
+
+

@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.input.ScrollEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import tables.Payment;
@@ -48,13 +48,6 @@ public class PaymentPage {
         new MainUI().start(new Stage());
     }
 
-    public void switchHome() throws IOException {
-        Scene main = new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml")));
-        main.getStylesheets().add("css/mainpage.css");
-        main.setFill(javafx.scene.paint.Color.TRANSPARENT);
-        Controller.stage.setScene(main);
-    }
-
     public void closeApp() {
         Controller.stage.close();
     }
@@ -65,5 +58,19 @@ public class PaymentPage {
             listPayment.setItems(payments);
             listPayment.setCellFactory(p -> new PaymentCell());
         }
+    }
+
+    public void switchSalary() throws IOException {
+        Scene salary = new Scene(FXMLLoader.load(getClass().getResource("fxml/UserSettings.fxml")));
+        salary.getStylesheets().add("css/usersettings.css");
+        salary.setFill(Color.TRANSPARENT);
+        Controller.stage.setScene(salary);
+    }
+
+    public void switchHome() throws IOException {
+        Scene main = new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml")));
+        main.getStylesheets().add("css/mainpage.css");
+        main.setFill(Color.TRANSPARENT);
+        Controller.stage.setScene(main);
     }
 }

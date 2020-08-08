@@ -27,6 +27,7 @@ public class PaymentCell extends ListCell<Payment> {
 
     @Override
     protected void updateItem(Payment payment, boolean empty) {
+        super.updateItem(payment,empty);
         if(empty || payment == null) {
             setText(null);
             setGraphic(null);
@@ -37,9 +38,7 @@ public class PaymentCell extends ListCell<Payment> {
 
                 try {
                     mLLoader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                } catch (IOException ignored) {}
             }
 
             name.setText(payment.getName());
