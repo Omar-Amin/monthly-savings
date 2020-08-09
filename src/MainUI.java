@@ -76,6 +76,7 @@ public class MainUI extends Application {
         createScene.getStylesheets().add("css/login.css");
         main.setFill(Color.TRANSPARENT);
         createScene.setFill(Color.TRANSPARENT);
+        Controller.previousScene = main;
     }
 
     private static void setupServer(){

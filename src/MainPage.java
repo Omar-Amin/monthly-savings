@@ -17,10 +17,6 @@ import org.hibernate.Transaction;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.Month;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 
 public class MainPage {
 
@@ -63,7 +59,6 @@ public class MainPage {
         paymentsChart.getData().add(series);
         paymentsChart.setCreateSymbols(false);
     }
-
 
     private void setupChart(){
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
