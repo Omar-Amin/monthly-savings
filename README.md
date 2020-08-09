@@ -7,7 +7,7 @@ Simple user interface, where the user can give information about income, how muc
 First I tried to learn more about MSSQL and Hibernate by programming an application that uses the software. I started by simply making a command line version for the application and thought it would be fun to create something with visuals, as seen on the pictures below (not finished yet, will update the pictures during the process). The libraries used for this project is:
 - Javafx for visuals
 - Hibernate (framework for creating tables etc. in the database)
-- MS SQL (Microsoft SQL Server for the user, used locally)
+- MS SQL (Microsoft SQL Server, used locally)
 - Google Guava (Used for hashing)
 
 # Pictures
