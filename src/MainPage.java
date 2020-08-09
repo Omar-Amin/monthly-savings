@@ -3,7 +3,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -16,9 +16,16 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class MainPage {
 
+    @FXML
+    private LineChart<String,Number> paymentsChart;
     @FXML
     private Text welcome;
     @FXML
@@ -37,7 +44,26 @@ public class MainPage {
         balance.setText(Controller.user.getBalance()+"");
         welcome.setText("Welcome " + Controller.user.getFirstName() + "!");
         setupChart();
+        setupLine();
     }
+
+    private void setupLine() {
+        int currentMonth = LocalDate.now().getMonthValue()-1;
+        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        paymentsChart.setTitle("Savings overview");
+        paymentsChart.setLegendVisible(false);
+        XYChart.Series<String,Number> series = new XYChart.Series<>();
+        for (int i = 0; i < 12; i++) {
+            if(currentMonth > 11){
+                currentMonth = 0;
+            }
+            String month = months[currentMonth++];
+            series.getData().add(new XYChart.Data<>(month,Controller.user.getBalance() + (Controller.user.getIncome() - Controller.user.getMonthlyPayment()) * (i+1)));
+        }
+        paymentsChart.getData().add(series);
+        paymentsChart.setCreateSymbols(false);
+    }
+
 
     private void setupChart(){
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(

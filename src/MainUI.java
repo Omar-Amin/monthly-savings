@@ -5,23 +5,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import server.Authentication;
 import server.Server;
-import tables.User;
 
 import java.io.IOException;
-import java.util.Collection;
 
 public class MainUI extends Application {
 
-    // User interface
-    private Button createAccount;
     private TextField emailInsert;
-    private Button logIn;
     private PasswordField passwordInsert;
     private Scene main;
     private Scene createScene;
@@ -37,7 +31,6 @@ public class MainUI extends Application {
     public void start(Stage primaryStage) throws IOException {
         Controller.stage = primaryStage;
         setController();
-        Controller.previousScene = main;
         // Setting up stage
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setScene(main);
@@ -45,8 +38,9 @@ public class MainUI extends Application {
         new CreateAccount(createScene);
         emailInsert = (TextField) main.lookup("#emailInsert");
         passwordInsert = (PasswordField) main.lookup("#passwordInsert");
-        logIn = (Button) main.lookup("#logIn");
-        createAccount = (Button) main.lookup("#createAccount");
+        Button logIn = (Button) main.lookup("#logIn");
+        // User interface
+        Button createAccount = (Button) main.lookup("#createAccount");
 
         // log in
         logIn.setOnAction((e) ->{
@@ -70,9 +64,7 @@ public class MainUI extends Application {
         });
 
         // creating account, switches scene
-        createAccount.setOnAction((e) -> {
-            primaryStage.setScene(createScene);
-        });
+        createAccount.setOnAction((e) -> primaryStage.setScene(createScene));
     }
 
     // setup scenes
@@ -102,7 +94,7 @@ public class MainUI extends Application {
         server.buildFactory();
     }
 
-    public void closeApp(MouseEvent mouseEvent) {
+    public void closeApp() {
         Controller.stage.close();
     }
 }

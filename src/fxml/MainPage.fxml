@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -41,46 +44,46 @@
       </cursor>
       <Image url="@../icons/logOut.png" />
    </ImageView>
-   <Pane layoutX="656.0" prefHeight="479.0" prefWidth="297.0" style="-fx-background-color: #2F2F2F; -fx-border-radius: 0 15 0 15; -fx-background-radius: 0 15 0 15;">
-      <ImageView id="closeIcon" fitHeight="20.0" fitWidth="20.0" layoutX="262" layoutY="14.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
+   <Pane layoutX="691.0" prefHeight="479.0" prefWidth="263.0" style="-fx-background-color: #2F2F2F; -fx-border-radius: 0 15 0 15; -fx-background-radius: 0 15 0 15;">
+      <ImageView id="closeIcon" fitHeight="20.0" fitWidth="20.0" layoutX="227.0" layoutY="14.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <Image url="@../icons/closeIcon.png" />
       </ImageView>
-      <Text fill="WHITE" layoutX="27.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account">
+      <Text fill="WHITE" layoutX="22.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account">
          <font>
             <Font name="Calibri" size="41.0" />
          </font>
       </Text>
-      <Text fill="#dddddd" layoutX="29.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:">
+      <Text fill="#dddddd" layoutX="24.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:">
          <font>
             <Font name="Calibri Bold" size="19.0" />
          </font>
       </Text>
-      <Text fill="#30ca80" layoutX="104.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
+      <Text fill="#30ca80" layoutX="99.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
          <font>
             <Font name="Calibri Bold" size="19.0" />
          </font>
       </Text>
-      <TextField fx:id="balance" editable="false" layoutX="104.0" layoutY="75.0" prefHeight="25.0" prefWidth="118.0" style="-fx-background-color: none;">
+      <TextField fx:id="balance" editable="false" layoutX="99.0" layoutY="75.0" prefHeight="36.0" prefWidth="118.0" style="-fx-background-color: none;">
          <font>
             <Font name="Calibri Bold" size="19.0" />
          </font>
       </TextField>
-      <ImageView fx:id="editBalance" fitHeight="15.0" fitWidth="15.0" layoutX="232.0" layoutY="87.0" onMouseClicked="#changeField" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="editBalance" fitHeight="15.0" fitWidth="15.0" layoutX="227.0" layoutY="87.0" onMouseClicked="#changeField" pickOnBounds="true" preserveRatio="true">
          <Image url="@../icons/editBalance.png" />
       </ImageView>
       <ImageView fx:id="saveBalance" fitHeight="15.0" fitWidth="15.0" layoutX="232.0" layoutY="87.0" onMouseClicked="#saveMethod" pickOnBounds="true" preserveRatio="true" visible="false">
          <Image url="@../icons/checkIcon.png" />
       </ImageView>
-      <Text fill="#dddddd" layoutX="29.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overview">
+      <Text fill="#dddddd" layoutX="24.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overview">
          <font>
             <Font name="Calibri Bold" size="19.0" />
          </font>
       </Text>
-      <PieChart fx:id="overview" labelLineLength="5.0" layoutX="33.0" layoutY="161.0" prefHeight="276.0" prefWidth="243.0" />
-      <Label fx:id="caption" layoutX="29.0" layoutY="441.0" textAlignment="CENTER">
+      <PieChart fx:id="overview" labelLineLength="5.0" layoutX="22.0" layoutY="161.0" prefHeight="276.0" prefWidth="243.0" />
+      <Label fx:id="caption" layoutX="24.0" layoutY="441.0" textAlignment="CENTER">
          <font>
             <Font name="Calibri" size="15.0" />
          </font>
@@ -91,4 +94,12 @@
          <Font name="Calibri" size="48.0" />
       </font>
    </Text>
+   <LineChart fx:id="paymentsChart" layoutX="101.0" layoutY="106.0" prefHeight="410.0" prefWidth="566.0">
+     <xAxis>
+       <CategoryAxis side="BOTTOM" />
+     </xAxis>
+     <yAxis>
+       <NumberAxis side="LEFT" />
+     </yAxis>
+   </LineChart>
 </AnchorPane>
