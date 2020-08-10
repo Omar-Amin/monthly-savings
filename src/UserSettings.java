@@ -37,6 +37,7 @@ public class UserSettings {
         if(stats == null){
             stats = getStats();
         }
+        comparisonChart.setTitle("Your income/payments compared to others");
         XYChart.Series<String,Number> user = new XYChart.Series<>();
         XYChart.Series<String,Number> avg = new XYChart.Series<>();
         avg.setName("Average");

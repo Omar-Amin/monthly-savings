@@ -53,3 +53,36 @@
     -fx-opacity: 1;
     -fx-cursor: hand;
 }
+
+.chart-title {
+    -fx-text-fill: #ffffff;
+}
+
+.axis {
+    -fx-tick-label-fill: #fff;
+}
+
+.chart-plot-background {
+    -fx-background-color: none;
+}
+.chart-vertical-grid-lines {
+    -fx-stroke: #b8b8b8;
+}
+.chart-horizontal-grid-lines {
+    -fx-stroke: #a2a2a2;
+}
+.chart-alternative-row-fill {
+    -fx-fill: none;
+    -fx-stroke: transparent;
+}
+
+.chart-legend{
+    -fx-background-color: none;
+}
+
+.label{
+    -fx-text-fill: #fff;
+}
+
+.default-color0.chart-bar { -fx-bar-fill: #30CA80; }
+.default-color1.chart-bar { -fx-bar-fill: #fc5d5d; }
