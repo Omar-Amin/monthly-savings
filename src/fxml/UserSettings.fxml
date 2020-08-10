@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -66,5 +69,13 @@
     <ImageView fx:id="saveIncome" fitHeight="15.0" fitWidth="15.0" layoutX="617.0" layoutY="121.0" onMouseClicked="#saveMethod" pickOnBounds="true" preserveRatio="true" visible="false">
         <Image url="@../icons/checkIcon.png" />
     </ImageView>
+   <BarChart fx:id="comparisonChart" layoutX="155.0" layoutY="146.0" prefHeight="331.0" prefWidth="500.0">
+     <xAxis>
+       <CategoryAxis side="BOTTOM" />
+     </xAxis>
+     <yAxis>
+       <NumberAxis side="LEFT" />
+     </yAxis>
+   </BarChart>
 
 </AnchorPane>

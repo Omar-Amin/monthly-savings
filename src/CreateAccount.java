@@ -43,9 +43,7 @@ public class CreateAccount {
             }
             auth.closeSession();
         });
-        backToSign.setOnAction((e) -> {
-            Controller.stage.setScene(Controller.previousScene);
-        });
+        backToSign.setOnAction((e) -> Controller.stage.setScene(Controller.previousScene));
     }
 
     private void start(){
