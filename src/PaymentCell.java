@@ -2,11 +2,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import tables.Payment;
 import tables.paymentType;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class PaymentCell extends ListCell<Payment> {
@@ -19,6 +24,9 @@ public class PaymentCell extends ListCell<Payment> {
 
     @FXML
     private Label type;
+
+    @FXML
+    private ImageView deletePayment;
 
     @FXML
     private GridPane gridPane;
@@ -41,6 +49,34 @@ public class PaymentCell extends ListCell<Payment> {
                 } catch (IOException ignored) {}
             }
 
+            deletePayment.setOnMouseClicked((e) -> {
+                deletePayment.setOnMouseClicked((p) -> {
+                    try {
+                        p.wait();
+                    } catch (InterruptedException ignored) { }
+                });
+                Session session = MainUI.server.getSession();
+                List<Payment> payments = Controller.user.getPayments();
+                for (int i = 0; i < payments.size(); i++) {
+                    Payment p = payments.get(i);
+                    if(p.getId() == payment.getId()){
+                        Controller.user.deletePayment(i);
+                        Controller.user.setMonthlyPayment(Controller.user.getMonthlyPayment()-updateMonthly(payment));
+                        break;
+                    }
+                }
+
+                try{
+                    Transaction tr = session.beginTransaction();
+                    session.delete(payment);
+                    session.update(Controller.user);
+                    tr.commit();
+                } catch (HibernateException ignored) {
+                }finally {
+                    session.close();
+                }
+            });
+
             name.setText(payment.getName());
             paymentType pt = payment.getType();
             if(pt == paymentType.daily){
@@ -56,6 +92,20 @@ public class PaymentCell extends ListCell<Payment> {
             setText(null);
             setGraphic(gridPane);
         }
+    }
+
+    private int updateMonthly(Payment p){
+        int payments;
+        if(p.getType() == tables.paymentType.daily){
+            payments = 4 * 7 * p.getPrice();
+        }else if(p.getType() == tables.paymentType.quarterly){
+            payments = p.getPrice() / 4;
+        }else if (p.getType() == tables.paymentType.yearly){
+            payments = p.getPrice() / (52/4);
+        } else {
+            payments = p.getPrice();
+        }
+        return payments;
     }
 
 

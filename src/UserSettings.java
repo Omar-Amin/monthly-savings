@@ -92,26 +92,6 @@ public class UserSettings {
         return payments;
     }
 
-    public void switchHome() throws IOException {
-        Scene main = new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml")));
-        main.getStylesheets().add("css/mainpage.css");
-        main.setFill(javafx.scene.paint.Color.TRANSPARENT);
-        Controller.stage.setScene(main);
-    }
-
-    public void switchPayment() throws IOException {
-        Scene payment = new Scene(FXMLLoader.load(getClass().getResource("fxml/PaymentPage.fxml")));
-        payment.getStylesheets().add("css/payment.css");
-        payment.setFill(javafx.scene.paint.Color.TRANSPARENT);
-        Controller.stage.setScene(payment);
-    }
-
-    public void changeField() {
-        income.setText(String.valueOf(Controller.user.getIncome()));
-        income.setEditable(true);
-        editIncome.setVisible(false);
-        saveIncome.setVisible(true);
-    }
 
     /**
      * Updates the users income.
@@ -143,12 +123,18 @@ public class UserSettings {
     }
 
     public void calculateSaving() throws NumberFormatException{
+        result.setVisible(false);
         resultTitle.setVisible(true);
         int moneyLeft = Controller.user.getIncome()-Controller.user.getMonthlyPayment();
         if(moneyLeft <= 0){
             resultTitle.setText("You don't earn enough money to save up anything.");
         }else{
-            double totalCost = Math.ceil((double) Integer.parseInt(saveUp.getText())/moneyLeft);
+            int balanceSubtract = Integer.parseInt(saveUp.getText())-Controller.user.getBalance();
+            if(balanceSubtract <= 0){
+                resultTitle.setText("You already have enough in your account!");
+                return;
+            }
+            double totalCost = Math.ceil((double) balanceSubtract/moneyLeft*30);
             if(totalCost > 180){
                 result.setText((int) Math.ceil(totalCost/30) + " month(s)");
             } else {
@@ -157,6 +143,27 @@ public class UserSettings {
             resultTitle.setText("It will take you:");
             result.setVisible(true);
         }
+    }
+
+    public void switchHome() throws IOException {
+        Scene main = new Scene(FXMLLoader.load(getClass().getResource("fxml/MainPage.fxml")));
+        main.getStylesheets().add("css/mainpage.css");
+        main.setFill(javafx.scene.paint.Color.TRANSPARENT);
+        Controller.stage.setScene(main);
+    }
+
+    public void switchPayment() throws IOException {
+        Scene payment = new Scene(FXMLLoader.load(getClass().getResource("fxml/PaymentPage.fxml")));
+        payment.getStylesheets().add("css/payment.css");
+        payment.setFill(javafx.scene.paint.Color.TRANSPARENT);
+        Controller.stage.setScene(payment);
+    }
+
+    public void changeField() {
+        income.setText(String.valueOf(Controller.user.getIncome()));
+        income.setEditable(true);
+        editIncome.setVisible(false);
+        saveIncome.setVisible(true);
     }
 
     public void logOut() throws IOException {

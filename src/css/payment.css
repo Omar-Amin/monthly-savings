@@ -61,3 +61,12 @@
 .root{
     -fx-background-color: #1b1b1b;
 }
+
+#deletePayment{
+    -fx-opacity: 0.8;
+}
+
+#deletePayment:hover{
+    -fx-opacity: 1;
+    -fx-cursor: hand;
+}
