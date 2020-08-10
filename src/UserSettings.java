@@ -5,6 +5,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,6 +18,12 @@ import java.util.List;
 public class UserSettings {
 
     @FXML
+    private TextField saveUp;
+    @FXML
+    private Text resultTitle;
+    @FXML
+    private Text result;
+    @FXML
     private BarChart<String,Number> comparisonChart;
     @FXML
     private TextField income;
@@ -25,18 +32,18 @@ public class UserSettings {
     @FXML
     private ImageView saveIncome;
 
-    private Stats stats;
-
     @FXML
     private void initialize() {
         income.setText("$ " + Controller.user.getIncome());
         setupBarchart();
     }
 
+    /**
+     * Setting up bar chart by retrieving information from the user
+     * and from all the other users calculating the average income/payments.
+     * */
     private void setupBarchart(){
-        if(stats == null){
-            stats = getStats();
-        }
+        Stats stats = getStats();
         comparisonChart.setTitle("Your income/payments compared to others");
         XYChart.Series<String,Number> user = new XYChart.Series<>();
         XYChart.Series<String,Number> avg = new XYChart.Series<>();
@@ -44,8 +51,8 @@ public class UserSettings {
         user.setName("You");
         user.getData().add(new XYChart.Data<>("Payments",Controller.user.getMonthlyPayment()));
         user.getData().add(new XYChart.Data<>("Income",Controller.user.getIncome()));
-        avg.getData().add(new XYChart.Data<>("Payments",stats.getAveragePayments()));
-        avg.getData().add(new XYChart.Data<>("Income",stats.getAverageIncome()));
+        avg.getData().add(new XYChart.Data<>("Payments", stats.getAveragePayments()));
+        avg.getData().add(new XYChart.Data<>("Income", stats.getAverageIncome()));
         comparisonChart.getData().add(user);
         comparisonChart.getData().add(avg);
     }
@@ -106,6 +113,9 @@ public class UserSettings {
         saveIncome.setVisible(true);
     }
 
+    /**
+     * Updates the users income.
+     * */
     public void saveMethod() {
         try (Session session = MainUI.server.getSession()) {
             Transaction tr = session.beginTransaction();
@@ -116,13 +126,37 @@ public class UserSettings {
         finally {
             income.setText("$ " + Controller.user.getIncome());
         }
+        // updating the chart
         comparisonChart.setAnimated(false);
         comparisonChart.getData().clear();
         comparisonChart.setAnimated(true);
         setupBarchart();
+
+        // change it to invisible since new income
+        // doesn't mean the same saving result
+        resultTitle.setVisible(false);
+        result.setVisible(false);
+        saveUp.clear();
         income.setEditable(false);
         saveIncome.setVisible(false);
         editIncome.setVisible(true);
+    }
+
+    public void calculateSaving() throws NumberFormatException{
+        resultTitle.setVisible(true);
+        int moneyLeft = Controller.user.getIncome()-Controller.user.getMonthlyPayment();
+        if(moneyLeft <= 0){
+            resultTitle.setText("You don't earn enough money to save up anything.");
+        }else{
+            double totalCost = Math.ceil((double) Integer.parseInt(saveUp.getText())/moneyLeft);
+            if(totalCost > 180){
+                result.setText((int) Math.ceil(totalCost/30) + " month(s)");
+            } else {
+                result.setText((int) totalCost + " day(s)");
+            }
+            resultTitle.setText("It will take you:");
+            result.setVisible(true);
+        }
     }
 
     public void logOut() throws IOException {

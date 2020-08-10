@@ -86,3 +86,17 @@
 
 .default-color0.chart-bar { -fx-bar-fill: #30CA80; }
 .default-color1.chart-bar { -fx-bar-fill: #fc5d5d; }
+
+#saveUp{
+    -fx-text-fill: #30CA80;
+}
+
+#calculate{
+    -fx-background-color: #31AD72;
+    -fx-text-fill: #fff;
+}
+
+#calculate:hover{
+    -fx-background-color: #30CA80;
+    -fx-cursor: hand;
+}
