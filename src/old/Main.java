@@ -1,3 +1,5 @@
+package old;
+
 import tables.Payment;
 import tables.User;
 import server.Authentication;
@@ -7,11 +9,11 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 // NOTE: The command line version doesn't work
-// it needs a Scanner object in server/Authentication.java and Operations.java.
+// it needs a Scanner object in server/Authentication.java and old.Operations.java.
 public class Main {
 
 /*    public static void main(String[] args) {
-        Main main = new Main();
+        old.Main main = new old.Main();
         main.run();
     }
 
@@ -62,7 +64,7 @@ public class Main {
         System.out.println("Press 1 to change income. \nPress 2 to add a new payment. \nPress 3 to view all payments.\n" +
                 "Press 4 to get more information on your income and monthly payments.\n" + "Press 5 to calculate how long it takes to save up x amount of money.\n" +
                 "Press 6 to delete a payment.\n"+ "Press 7 to get stats.\n" + "Press 8 to log out.");
-        Operations op = new Operations(server,user,sc);
+        old.Operations op = new old.Operations(server,user,sc);
         switch (sc.nextLine()){
             case "1":
                 try{

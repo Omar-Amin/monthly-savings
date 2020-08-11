@@ -1,13 +1,18 @@
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import server.Authentication;
 import server.Server;
 
@@ -15,6 +20,7 @@ import java.io.IOException;
 
 public class MainUI extends Application {
 
+    private Label incorrect;
     private TextField emailInsert;
     private PasswordField passwordInsert;
     private Scene main;
@@ -38,6 +44,7 @@ public class MainUI extends Application {
         new CreateAccount(createScene);
         emailInsert = (TextField) main.lookup("#emailInsert");
         passwordInsert = (PasswordField) main.lookup("#passwordInsert");
+        incorrect = (Label) main.lookup("#incorrect");
         Button logIn = (Button) main.lookup("#logIn");
         // User interface
         Button createAccount = (Button) main.lookup("#createAccount");
@@ -57,8 +64,19 @@ public class MainUI extends Application {
                     primaryStage.setScene(mainPage);
                 } catch (IOException ignored) {}
             }else {
-                // TODO: Indication of that the password was wrong
-                System.out.println("WRONG!!");
+                TranslateTransition down = new TranslateTransition();
+                down.setDuration(Duration.seconds(0.45));
+                down.setToY(65);
+                down.setNode(incorrect);
+                down.play();
+                down.setOnFinished(event -> {
+                    TranslateTransition up = new TranslateTransition();
+                    up.setDelay(Duration.seconds(1));
+                    up.setDuration(Duration.seconds(0.45));
+                    up.setToY(0);
+                    up.setNode(incorrect);
+                    up.play();
+                });
             }
             authentication.closeSession();
         });

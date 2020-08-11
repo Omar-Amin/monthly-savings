@@ -10,34 +10,45 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.Cursor?>
-<AnchorPane prefHeight="550.0" prefWidth="953.0" style="-fx-background-color: #1B1B1B; -fx-border-radius: 15 15 15 15; -fx-background-radius: 15 15 15 15;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainUI">
-   <children>
-      <Button id="signUp" layoutX="369.0" layoutY="364.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="215.0" text="Sign up" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <TextField id="emailInsert" layoutX="369.0" layoutY="163.0" prefHeight="25.0" prefWidth="215.0" promptText="Email Address" />
-      <PasswordField id="passwordInsert" layoutX="369.0" layoutY="264.0" prefHeight="25.0" prefWidth="215.0" promptText="Password" />
-      <Text fill="WHITE" layoutX="300.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monthly savings">
-         <font>
-            <Font size="49.0" />
-         </font>
-      </Text>
-      <TextField id="fullName" layoutX="369.0" layoutY="212.0" prefHeight="25.0" prefWidth="215.0" promptText="Full name" />
-      <PasswordField id="passwordConfirm" layoutX="369.0" layoutY="315.0" prefHeight="25.0" prefWidth="215.0" promptText="Confirm password" />
-      <Button id="backToSign" layoutX="395.0" layoutY="414.0" mnemonicParsing="false" text="I already have an account" textFill="#cbc7c7">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Button>
-      <ImageView id="closeIcon" fitHeight="20.0" fitWidth="20.0" layoutX="918.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#closeApp">
-         <image>
-            <Image url="@../icons/closeIcon.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-   </children>
+<?import javafx.scene.control.Label?>
+<AnchorPane prefHeight="550.0" prefWidth="953.0"
+            style="-fx-background-color: #1B1B1B; -fx-border-radius: 15 15 15 15; -fx-background-radius: 15 15 15 15;"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainUI">
+   <Label id="incorrect" alignment="CENTER" layoutX="360.0" layoutY="-50.0" prefHeight="31.0" prefWidth="233.0"
+          text="Incorrect credentials!" textAlignment="CENTER">
+      <font>
+         <Font name="Calibri" size="18.0"/>
+      </font>
+   </Label>
+   <Button id="signUp" layoutX="369.0" layoutY="364.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="215.0"
+           text="Sign up" textFill="WHITE">
+      <font>
+         <Font name="Calibri" size="15.0"/>
+      </font>
+   </Button>
+   <TextField id="emailInsert" layoutX="369.0" layoutY="163.0" prefHeight="25.0" prefWidth="215.0"
+              promptText="Email Address"/>
+   <PasswordField id="passwordInsert" layoutX="369.0" layoutY="264.0" prefHeight="25.0" prefWidth="215.0"
+                  promptText="Password"/>
+   <Text fill="WHITE" layoutX="300.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monthly savings">
+      <font>
+         <Font name="Calibri" size="49.0"/>
+      </font>
+   </Text>
+   <TextField id="fullName" layoutX="369.0" layoutY="212.0" prefHeight="25.0" prefWidth="215.0" promptText="Full name"/>
+   <PasswordField id="passwordConfirm" layoutX="369.0" layoutY="315.0" prefHeight="25.0" prefWidth="215.0"
+                  promptText="Confirm password"/>
+   <Button id="backToSign" layoutX="395.0" layoutY="414.0" mnemonicParsing="false" text="I already have an account"
+           textFill="#cbc7c7">
+      <font>
+         <Font name="Calibri" size="13.0"/>
+      </font>
+   </Button>
+   <ImageView id="closeIcon" fitHeight="20.0" fitWidth="20.0" layoutX="918.0" layoutY="14.0" pickOnBounds="true"
+              preserveRatio="true" onMouseClicked="#closeApp">
+      <cursor>
+         <Cursor fx:constant="HAND"/>
+      </cursor>
+      <Image url="@../icons/closeIcon.png"/>
+   </ImageView>
 </AnchorPane>

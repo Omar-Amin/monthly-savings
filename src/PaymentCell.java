@@ -49,6 +49,8 @@ public class PaymentCell extends ListCell<Payment> {
                 } catch (IOException ignored) {}
             }
 
+            // deletes a payment from the user
+            // and updates the server about the deletion
             deletePayment.setOnMouseClicked((e) -> {
                 deletePayment.setOnMouseClicked((p) -> {
                     try {
@@ -72,7 +74,7 @@ public class PaymentCell extends ListCell<Payment> {
                     session.update(Controller.user);
                     tr.commit();
                 } catch (HibernateException ignored) {
-                }finally {
+                } finally {
                     session.close();
                 }
             });
@@ -81,11 +83,11 @@ public class PaymentCell extends ListCell<Payment> {
             paymentType pt = payment.getType();
             if(pt == paymentType.daily){
                 type.setText("Daily");
-            }else if(pt == paymentType.monthly){
+            } else if(pt == paymentType.monthly){
                 type.setText("Monthly");
-            }else if(pt == paymentType.quarterly){
+            } else if(pt == paymentType.quarterly){
                 type.setText("Quarterly");
-            }else{
+            } else{
                 type.setText("Yearly");
             }
             cost.setText("$ " + payment.getPrice());

@@ -1,3 +1,5 @@
+package old;
+
 import org.hibernate.query.Query;
 import tables.Payment;
 import tables.User;

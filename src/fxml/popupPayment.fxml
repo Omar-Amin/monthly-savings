@@ -10,13 +10,12 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="250.0" prefWidth="300.0" style="-fx-background-color: #2f2f2f; -fx-border-radius: 15 15 15 15; -fx-background-radius: 15 15 15 15;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="popupPayment">
-    <ImageView fx:id="closeIcon" fitHeight="20.0" fitWidth="20.0" layoutX="268.0" layoutY="12.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
-        <image>
-            <Image url="@../icons/closeIcon.png" />
-        </image>
+    <ImageView fx:id="closeIcon" fitHeight="20.0" fitWidth="20.0" layoutX="268.0" layoutY="12.0"
+               onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
         <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="HAND"/>
         </cursor>
+        <Image url="@../icons/closeIcon.png"/>
     </ImageView>
     <TextField fx:id="paymentName" layoutX="76.0" layoutY="58.0" prefHeight="25.0" prefWidth="150.0" promptText="Name">
         <font>
@@ -29,7 +28,7 @@
          <Font name="Calibri" size="12.0" />
       </font>
    </TextField>
-   <Button fx:id="savePayment" onMouseClicked="#updatePayments" layoutX="114.0" layoutY="201.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="72.0" text="Save">
+   <Button id="savePayment" onMouseClicked="#updatePayments" layoutX="114.0" layoutY="201.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="72.0" text="Save">
       <font>
          <Font name="Calibri Bold" size="13.0" />
       </font></Button>

@@ -109,6 +109,12 @@ public class MainPage {
         balance.setEditable(false);
         saveBalance.setVisible(false);
         editBalance.setVisible(true);
+
+        // updates the line chart
+        paymentsChart.setAnimated(false);
+        paymentsChart.getData().clear();
+        setupLine();
+        paymentsChart.setAnimated(true);
     }
 
     public void switchPayment() throws IOException {

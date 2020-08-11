@@ -128,7 +128,7 @@ public class UserSettings {
         int moneyLeft = Controller.user.getIncome()-Controller.user.getMonthlyPayment();
         if(moneyLeft <= 0){
             resultTitle.setText("You don't earn enough money to save up anything.");
-        }else{
+        } else{
             int balanceSubtract = Integer.parseInt(saveUp.getText())-Controller.user.getBalance();
             if(balanceSubtract <= 0){
                 resultTitle.setText("You already have enough in your account!");

@@ -100,3 +100,10 @@
 #closeIcon:hover{
     -fx-opacity: 1;
 }
+
+#incorrect{
+    -fx-text-fill: #fff;
+    -fx-background-color: #ff6363;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
