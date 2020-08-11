@@ -1,6 +1,5 @@
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -64,6 +63,7 @@ public class MainUI extends Application {
                     primaryStage.setScene(mainPage);
                 } catch (IOException ignored) {}
             }else {
+                // animation for when giving the wrong credentials
                 TranslateTransition down = new TranslateTransition();
                 down.setDuration(Duration.seconds(0.45));
                 down.setToY(65);
