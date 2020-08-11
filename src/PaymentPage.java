@@ -57,6 +57,7 @@ public class PaymentPage {
      * */
     public void refresh() {
         if(current != Controller.user.getPayments().size()){
+            current = Controller.user.getPayments().size();
             ObservableList<Payment> payments = FXCollections.observableArrayList(Controller.user.getPayments());
             listPayment.setItems(payments);
             listPayment.setCellFactory(p -> new PaymentCell());

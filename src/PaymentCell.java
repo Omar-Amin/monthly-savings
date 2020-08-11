@@ -52,11 +52,7 @@ public class PaymentCell extends ListCell<Payment> {
             // deletes a payment from the user
             // and updates the server about the deletion
             deletePayment.setOnMouseClicked((e) -> {
-                deletePayment.setOnMouseClicked((p) -> {
-                    try {
-                        p.wait();
-                    } catch (InterruptedException ignored) { }
-                });
+                deletePayment.setOnMouseClicked(null);
                 Session session = MainUI.server.getSession();
                 List<Payment> payments = Controller.user.getPayments();
                 for (int i = 0; i < payments.size(); i++) {
