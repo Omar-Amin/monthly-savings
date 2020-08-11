@@ -16,6 +16,6 @@ First I tried to learn more about MSSQL and Hibernate by programming an applicat
 ![incorrect](incorrect.png)
 ![Create account](create.png)
 ![Front page](main.png)
-![Payment](payment.png)
 ![Insert](insert.png)
+![Payment](payment.png)
 ![Salary](salary.png)
